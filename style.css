@@ -7,8 +7,14 @@ main {
   width: 1000px;
 }
 header {
+  background-color: white;
+
+  border-radius: 20px;
   text-align: center;
-  padding: 15px 10px;
+  font-size: 25px;
+  padding: 15px;
+  box-shadow: 0px 5px 3px -5px black;
+  margin-bottom: 25px;
 }
 body {
   display: flex;
@@ -36,8 +42,13 @@ select {
   text-align: center;
   padding: 3px 0px;
   text-align-last: center;
-  border: 1px black solid;
-  border-radius: 10px;
+  border: 0.5px black solid;
+  border-radius: 50px;
+  transition: padding 0.3s ease-in-out;
+}
+input:focus-within,
+select:focus-within {
+  padding: 10px;
 }
 
 input:focus,
@@ -47,6 +58,7 @@ select:focus {
 }
 
 .submit_btn input {
+  padding: 10px;
   background-color: white;
 }
 
@@ -99,14 +111,20 @@ form {
   display: none;
 }
 
+.result_box {
+  margin: 10px;
+  border-radius: 20px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 3px 6px -3px black;
+}
+
 .result {
+  display: block;
+  /* background-color: #ff9999; */
   font-size: 18px;
   font-weight: bold;
-  display: block;
-  padding: 10px;
-  margin: 10px;
-  background-color: #ff9999;
-  border-radius: 20px;
+  margin-bottom: 5px;
 }
 
 .result_info {

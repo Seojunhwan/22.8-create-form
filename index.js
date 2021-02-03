@@ -4,6 +4,7 @@ const typeSelectBox = document.getElementById("type"),
   result = document.querySelector(".result"),
   resultPlate = document.querySelector(".plate_cost"),
   resultFoundation = document.querySelector(".foundation_cost"),
+  resultQuantity = document.querySelector(".result_quantity"),
   submitBtn = document.querySelector(".submit_btn"),
   quantity = document.querySelector("#quantity");
 
@@ -12,6 +13,11 @@ function initialOption() {
   options.forEach(function (option) {
     option.classList.remove("hide");
   });
+}
+
+function appearResult() {
+  const resultTap = document.querySelector(".result_box");
+  resultTap.classList.remove("hide");
 }
 
 function hideOptions() {
@@ -141,9 +147,11 @@ function handleChange() {
 
 function handleSubmit(event) {
   event.preventDefault();
+  appearResult();
   result.innerText = `고객님께서 선택해주신 옵션은 ${calcCost()} 원 입니다.`;
   resultPlate.innerText = `판재비 : ${plateCost()} 원`;
   resultFoundation.innerText = `재단비 : ${foundationCost()} 원`;
+  resultQuantity.innerText = `${quantity.value} 개`;
 }
 
 function init() {
