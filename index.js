@@ -5,6 +5,7 @@ const typeSelectBox = document.getElementById("type"),
   resultPlate = document.querySelector(".plate_cost"),
   resultFoundation = document.querySelector(".foundation_cost"),
   resultQuantity = document.querySelector(".result_quantity"),
+  naverInfo = document.querySelector(".count_info"),
   submitBtn = document.querySelector(".submit_btn"),
   quantity = document.querySelector("#quantity");
 
@@ -152,6 +153,9 @@ function handleSubmit(event) {
   resultPlate.innerText = `판재비 : ${plateCost()} 원`;
   resultFoundation.innerText = `재단비 : ${foundationCost()} 원`;
   resultQuantity.innerText = `${quantity.value} 개`;
+  naverInfo.innerText = `네이버 스토어 구매 수량에 ${
+    calcCost() / 100
+  } 개 입력해 주시기 바랍니다.`;
 }
 
 function init() {
