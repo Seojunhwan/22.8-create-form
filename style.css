@@ -64,6 +64,7 @@ input {
 }
 
 .option_tap:focus-within {
+  margin: 5px 0px;
   padding: 10px;
   box-shadow: 2px 1px 5px -5px black;
   background-color: white;
@@ -106,4 +107,13 @@ form {
   margin: 10px;
   background-color: #ff9999;
   border-radius: 20px;
+}
+
+.result_info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.result_info span {
+  font-size: 15px;
 }

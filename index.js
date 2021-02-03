@@ -2,6 +2,8 @@
 const typeSelectBox = document.getElementById("type"),
   thickSelectBox = document.getElementById("thickness"),
   result = document.querySelector(".result"),
+  resultPlate = document.querySelector(".plate_cost"),
+  resultFoundation = document.querySelector(".foundation_cost"),
   submitBtn = document.querySelector(".submit_btn"),
   quantity = document.querySelector("#quantity");
 
@@ -140,6 +142,8 @@ function handleChange() {
 function handleSubmit(event) {
   event.preventDefault();
   result.innerText = `고객님께서 선택해주신 옵션은 ${calcCost()} 원 입니다.`;
+  resultPlate.innerText = `판재비 : ${plateCost()} 원`;
+  resultFoundation.innerText = `재단비 : ${foundationCost()} 원`;
 }
 
 function init() {

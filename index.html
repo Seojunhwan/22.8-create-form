@@ -12,83 +12,89 @@
         <header>
           <span>사이즈를 입력하고 주문서에 담아주세요</span>
         </header>
-        <div class="option_tap">
-          <label for="type" class="option_title">표면종류</label>
-          <div>
-            <select id="type">
-              <option value="a">옵션을 선택해 주세요</option>
-              <option value="2B">2B</option>
-              <option value="HL">H/L</option>
-              <option class="mir" value="Mirror">Mirror</option>
-              <option class="other" value="BLK_HL">Black H/L</option>
-              <option class="other" value="GOL_HL">Gold H/L</option>
-              <option class="other" value="GOL_Mirror">Gold Mirror</option>
-            </select>
+        <form>
+          <div class="option_tap">
+            <label for="type" class="option_title">표면종류</label>
+            <div class="select_box">
+              <select id="type">
+                <option value="a">옵션을 선택해 주세요</option>
+                <option value="2B">2B</option>
+                <option value="HL">H/L</option>
+                <option class="mir" value="Mirror">Mirror</option>
+                <option class="other" value="BLK_HL">Black H/L</option>
+                <option class="other" value="GOL_HL">Gold H/L</option>
+                <option class="other" value="GOL_Mirror">Gold Mirror</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="option_tap">
-          <label for="thickness" class="option_title">두께</label>
-          <div>
-            <select required id="thickness">
-              <option value="a">옵션을 선택해 주세요</option>
-              <option class="mir_disabled other_disabled" value="0.8">
-                0.8 T
-              </option>
-              <option class="other_disabled" value="1">1 T</option>
-              <option value="1.2">1.2 T</option>
-              <option class="other_disabled" value="1.5">1.5 T</option>
-              <option class="other_disabled" value="2">2 T</option>
-            </select>
+          <div class="option_tap">
+            <label for="thickness" class="option_title">두께</label>
+            <div>
+              <select required id="thickness">
+                <option value="a">옵션을 선택해 주세요</option>
+                <option class="mir_disabled other_disabled" value="0.8">
+                  0.8 T
+                </option>
+                <option class="other_disabled" value="1">1 T</option>
+                <option value="1.2">1.2 T</option>
+                <option class="other_disabled" value="1.5">1.5 T</option>
+                <option class="other_disabled" value="2">2 T</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="option_tap">
-          <label for="quantity" class="option_title">수량</label>
-          <div>
-            <form>
-              <input
-                type="number"
-                placeholder="수량"
-                id="quantity"
-                min="1"
-                required
-              />
-            </form>
+          <div class="option_tap">
+            <label for="quantity" class="option_title">수량</label>
+            <div>
+              <form>
+                <input
+                  type="number"
+                  placeholder="수량"
+                  id="quantity"
+                  min="1"
+                  required
+                />
+              </form>
+            </div>
           </div>
-        </div>
-        <div class="option_tap">
-          <label class="option_title" for="w_h">규격</label>
-          <div>
-            <form>
-              <input
-                id="w_h"
-                class="calc_width"
-                required
-                placeholder="가로"
-                type="number"
-                min="10"
-                max="1219"
-              />
-              <input
-                class="calc_height"
-                required
-                placeholder="세로"
-                type="number"
-                min="10"
-                max="2438"
-              />
-            </form>
+          <div class="option_tap">
+            <label class="option_title" for="w_h">규격</label>
+            <div>
+              <form>
+                <input
+                  id="w_h"
+                  class="calc_width"
+                  required
+                  placeholder="가로"
+                  type="number"
+                  min="10"
+                  max="1219"
+                />
+                <input
+                  class="calc_height"
+                  required
+                  placeholder="세로"
+                  type="number"
+                  min="10"
+                  max="2438"
+                />
+              </form>
+            </div>
           </div>
-        </div>
-        <div class="option_tap horizon_info">
-          <span>가로 : 10 mm ~ 1,219 mm</span>
-          <span>세로 : 10 mm ~ 2,438 mm</span>
-        </div>
+          <div class="option_tap horizon_info">
+            <span>가로 : 10 mm ~ 1,219 mm</span>
+            <span>세로 : 10 mm ~ 2,438 mm</span>
+          </div>
+        </form>
         <form class="submit_btn">
-          <input value="결과보기" type="submit" />
+          <input class="submit_btn" value="계산하기" type="submit" />
         </form>
         <div class="result_box">
           <span class="result"></span>
-          <span class="result_notice"></span>
+          <div class="result_info">
+            <span class="plate_cost">21</span>
+            <span> + </span>
+            <span class="foundation_cost">12</span>
+          </div>
         </div>
       </div>
     </main>
