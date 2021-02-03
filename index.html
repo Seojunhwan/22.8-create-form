@@ -17,9 +17,12 @@
           <div>
             <select id="type">
               <option value="a">옵션을 선택해 주세요</option>
-              <option value="b">2B</option>
-              <option value="c">H/L</option>
-              <option value="d">Mirror</option>
+              <option value="2B">2B</option>
+              <option value="HL">H/L</option>
+              <option class="mir" value="Mirror">Mirror</option>
+              <option class="other" value="BLK_HL">Black H/L</option>
+              <option class="other" value="GOL_HL">Gold H/L</option>
+              <option class="other" value="GOL_Mirror">Gold Mirror</option>
             </select>
           </div>
         </div>
@@ -28,19 +31,28 @@
           <div>
             <select required id="thickness">
               <option value="a">옵션을 선택해 주세요</option>
-              <option value="0.8">0.8 T</option>
-              <option value="1">1 T</option>
+              <option class="mir_disabled other_disabled" value="0.8">
+                0.8 T
+              </option>
+              <option class="other_disabled" value="1">1 T</option>
               <option value="1.2">1.2 T</option>
-              <option value="1.5">1.5 T</option>
-              <option value="2">2 T</option>
+              <option class="other_disabled" value="1.5">1.5 T</option>
+              <option class="other_disabled" value="2">2 T</option>
             </select>
           </div>
         </div>
         <div class="option_tap">
-          <span class="option_title">수량</span>
+          <label for="quantity" class="option_title">수량</label>
           <div>
-            <span id="quantity">1개</span>
-            <!-- FIXME:여기 javascript로 조지기 -->
+            <form>
+              <input
+                type="number"
+                placeholder="수량"
+                id="quantity"
+                min="1"
+                required
+              />
+            </form>
           </div>
         </div>
         <div class="option_tap">

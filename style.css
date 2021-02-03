@@ -61,10 +61,6 @@ input {
   justify-content: flex-start;
 }
 
-#quantity {
-  width: 75%;
-  text-align: center;
-}
 .option_tap div {
   width: 75%;
   display: flex;
@@ -88,4 +84,9 @@ form {
   padding: 3px;
   font-size: 12px;
   font-weight: bold;
+}
+.other_disabled {
+}
+.hide {
+  display: none;
 }
