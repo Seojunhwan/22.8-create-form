@@ -59,6 +59,14 @@ input {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  transition: all 1s ease-in-out;
+  border-radius: 10px;
+}
+
+.option_tap:focus-within {
+  padding: 10px;
+  box-shadow: 2px 1px 5px -5px black;
+  background-color: white;
 }
 
 .option_tap div {
@@ -85,8 +93,17 @@ form {
   font-size: 12px;
   font-weight: bold;
 }
-.other_disabled {
-}
+
 .hide {
   display: none;
+}
+
+.result {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  padding: 10px;
+  margin: 10px;
+  background-color: #ff9999;
+  border-radius: 20px;
 }

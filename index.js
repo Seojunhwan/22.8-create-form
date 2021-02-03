@@ -111,10 +111,26 @@ function sizeCalc() {
   return sizeResult;
 }
 
-function calcCost() {
-  const result = sizeCalc() * unitPrice() * quantity.value;
+function plateCost() {
+  const result = sizeCalc() * unitPrice();
   const calcResult = Math.ceil(result / 100) * 100;
-  return calcResult;
+  if (calcResult < 1000) {
+    return 1000;
+  } else {
+    return calcResult;
+  }
+}
+
+function foundationCost() {
+  if (plateCost() < 10000) {
+    return 1000;
+  } else {
+    return 0;
+  }
+}
+
+function calcCost() {
+  return (plateCost() + foundationCost()) * quantity.value;
 }
 
 function handleChange() {

@@ -8,10 +8,10 @@
   </head>
   <body>
     <main>
-      <header>
-        <span>사이즈를 입력하고 주문서에 담아주세요</span>
-      </header>
       <div class="option_box">
+        <header>
+          <span>사이즈를 입력하고 주문서에 담아주세요</span>
+        </header>
         <div class="option_tap">
           <label for="type" class="option_title">표면종류</label>
           <div>
@@ -59,19 +59,22 @@
           <label class="option_title" for="w_h">규격</label>
           <div>
             <form>
-              <!-- FIXME:mix max 지정 -->
               <input
                 id="w_h"
                 class="calc_width"
                 required
                 placeholder="가로"
                 type="number"
+                min="10"
+                max="1219"
               />
               <input
                 class="calc_height"
                 required
                 placeholder="세로"
                 type="number"
+                min="10"
+                max="2438"
               />
             </form>
           </div>
