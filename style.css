@@ -43,7 +43,7 @@ select {
   text-align-last: center;
   border: 0.5px black solid;
   border-radius: 50px;
-  transition: padding 0.3s ease-in-out;
+  transition: padding 0.2s ease-in-out;
 }
 input:focus-within,
 select:focus-within {
@@ -70,7 +70,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   border-radius: 10px;
 }
 
@@ -144,4 +144,74 @@ form {
 .naver_info span {
   font-weight: bold;
   font-size: 16px;
+}
+
+.naver_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 15px 0px;
+  margin-top: 15px;
+  width: 75%;
+  height: 100%;
+  padding: 30px;
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0px 5px 3px -5px black;
+}
+.naver_box--adjustment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.adjust--quantity {
+  display: flex;
+  border: 1px solid #dde0e3;
+}
+
+.naver_box--option {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.operator,
+.quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: #f1f2f4;
+}
+.operator {
+  font-size: 20px;
+}
+.quantity {
+  font-weight: bold;
+  width: 50px;
+  background-color: white;
+}
+.naver-box--price {
+  font-weight: bold;
+}
+
+/* TODO:밑줄 제거하기 */
+.naver_link {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3ec910;
+  color: white;
+  padding: 15px 50px;
+  border-radius: 15px;
 }
