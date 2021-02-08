@@ -115,7 +115,7 @@ form {
   border-radius: 20px;
   background-color: white;
   padding: 20px;
-  box-shadow: 0px 3px 6px -3px black;
+  box-shadow: 0px 3px 3px -3px black;
 }
 
 .result {
@@ -168,6 +168,8 @@ form {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .adjust--quantity {
@@ -179,8 +181,10 @@ form {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin: 15px 0px;
+  padding-top: 20px;
   font-size: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .operator,
@@ -204,7 +208,6 @@ form {
   font-weight: bold;
 }
 
-/* TODO:밑줄 제거하기 */
 .naver_link {
   margin-top: 25px;
   display: flex;
@@ -214,4 +217,11 @@ form {
   color: white;
   padding: 15px 50px;
   border-radius: 15px;
+  box-shadow: 0px 5px 3px -5px black;
+}
+
+a:link,
+a:visited,
+a:hover {
+  text-decoration: none;
 }

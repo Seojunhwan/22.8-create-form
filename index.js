@@ -7,7 +7,12 @@ const typeSelectBox = document.getElementById("type"),
   resultQuantity = document.querySelector(".result_quantity"),
   naverInfo = document.querySelector(".count_info"),
   submitBtn = document.querySelector(".submit_btn"),
-  quantity = document.querySelector("#quantity");
+  quantity = document.querySelector("#quantity"),
+  naverBoxInfo = document.querySelector(".js-naverBox"),
+  naverBoxQuantity = document.querySelector(".js-quantity"),
+  naverBoxPrice = document.querySelector(".js-naverPrice"),
+  box = document.getElementsByTagName("select"),
+  box2 = document.getElementsByTagName("input");
 
 function initialOption() {
   const options = document.querySelectorAll("select > option");
@@ -146,16 +151,30 @@ function handleChange() {
   hideOptions();
 }
 
+function inputResult() {
+  const resultOptionValue = calcCost();
+  const resultPlateValue = plateCost();
+  const resultFoundationValue = foundationCost();
+  const resultNaverQuantity = calcCost() / 100;
+  const widthValue = document.querySelector(".calc_width").value;
+  const heightValue = document.querySelector(".calc_height").value;
+  const thickSelect = document.getElementById("thickness").options
+    .selectedIndex;
+  const typeSelect = document.getElementById("type").options.selectedIndex;
+  result.innerText = `고객님께서 선택해주신 옵션은 ${resultOptionValue} 원 입니다.`;
+  resultPlate.innerText = `판재비 ${resultPlateValue} 원`;
+  resultFoundation.innerText = `재단비 : ${resultFoundationValue} 원`;
+  resultQuantity.innerText = `${quantity.value} 개`;
+  naverInfo.innerText = `네이버 스토어 구매 수량에 ${resultNaverQuantity} 개 입력해 주시기 바랍니다.`;
+  naverBoxInfo.innerText = `${widthValue} / ${heightValue} / ${typeSelectBox.options[typeSelect].value} / ${thickSelectBox.options[thickSelect].value} T`;
+  naverBoxPrice.innerText = `${resultOptionValue}원`;
+  naverBoxQuantity.innerText = resultNaverQuantity;
+}
+
 function handleSubmit(event) {
   event.preventDefault();
   appearResult();
-  result.innerText = `고객님께서 선택해주신 옵션은 ${calcCost()} 원 입니다.`;
-  resultPlate.innerText = `판재비 : ${plateCost()} 원`;
-  resultFoundation.innerText = `재단비 : ${foundationCost()} 원`;
-  resultQuantity.innerText = `${quantity.value} 개`;
-  naverInfo.innerText = `네이버 스토어 구매 수량에 ${
-    calcCost() / 100
-  } 개 입력해 주시기 바랍니다.`;
+  inputResult();
 }
 
 function init() {
