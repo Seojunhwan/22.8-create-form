@@ -1,5 +1,4 @@
 main {
-  background-color: bisque;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +18,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: bisque;
 }
 .option_title {
   text-align: center;
@@ -59,6 +59,7 @@ select:focus {
 .submit_btn input {
   padding: 10px;
   background-color: white;
+  transition: all 0.3s linear;
 }
 
 input {
@@ -231,4 +232,11 @@ a:hover {
   height: 100%;
   opacity: 1;
   transition: all 0.5s ease-in-out;
+}
+.submit_btn input:hover {
+  /* background-color: tomato; */
+  /* padding: 10px; */
+  border: 2px solid #ff9999;
+  border-radius: 50px;
+  /* outline: none; */
 }
