@@ -21,9 +21,10 @@ function initialOption() {
   });
 }
 
-function appearResult() {
-  const resultTap = document.querySelector(".result_box");
-  resultTap.classList.remove("hide");
+function appearResults() {
+  const resultTap = document.querySelectorAll(".result_box");
+  resultTap[0].classList.replace("hide", "active");
+  resultTap[1].classList.replace("hide", "active");
 }
 
 function hideOptions() {
@@ -173,7 +174,7 @@ function inputResult() {
 
 function handleSubmit(event) {
   event.preventDefault();
-  appearResult();
+  appearResults();
   inputResult();
 }
 

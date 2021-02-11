@@ -106,18 +106,6 @@ form {
   font-weight: bold;
 }
 
-.hide {
-  display: none;
-}
-
-.result_box {
-  margin: 10px;
-  border-radius: 20px;
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0px 3px 3px -3px black;
-}
-
 .result {
   display: block;
   font-weight: bold;
@@ -224,4 +212,23 @@ a:link,
 a:visited,
 a:hover {
   text-decoration: none;
+}
+.hide {
+  opacity: 0;
+  height: 0px;
+  padding: 0px;
+  /* visibility: hidden; */
+  /* display: none; */
+}
+
+.active {
+  margin: 10px;
+  border-radius: 20px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 3px 3px -3px black;
+  display: block;
+  height: 100%;
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
 }
