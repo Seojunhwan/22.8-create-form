@@ -8,103 +8,78 @@
   </head>
   <body>
     <main>
-      <div class="option_box">
-        <header>
-          <span>#22.8 스텐 셀프 견적</span>
-        </header>
-        <form>
-          <div class="option_tap">
-            <label for="type" class="option_title">표면종류</label>
-            <div class="select_box">
-              <select id="type">
-                <option value="a">옵션을 선택해 주세요</option>
-                <option value="2B">2B</option>
-                <option value="HL">H/L</option>
-                <option class="mir" value="Mirror">Mirror</option>
-                <option class="other" value="BLK_HL">Black H/L</option>
-                <option class="other" value="GOL_HL">Gold H/L</option>
-                <option class="other" value="GOL_Mirror">Gold Mirror</option>
-              </select>
-            </div>
-          </div>
-          <div class="option_tap">
-            <label for="thickness" class="option_title">두께</label>
-            <div>
-              <select required id="thickness">
-                <option value="a">옵션을 선택해 주세요</option>
-                <option class="mir_disabled other_disabled" value="0.8">
-                  0.8 T
-                </option>
-                <option class="other_disabled" value="1">1 T</option>
-                <option value="1.2">1.2 T</option>
-                <option class="other_disabled" value="1.5">1.5 T</option>
-                <option class="other_disabled" value="2">2 T</option>
-              </select>
-            </div>
-          </div>
-          <div class="option_tap">
-            <label for="quantity" class="option_title">수량</label>
-            <div>
-              <form>
-                <input
-                  type="number"
-                  placeholder="수량"
-                  id="quantity"
-                  min="1"
-                  required
-                />
-              </form>
-            </div>
-          </div>
-          <div class="option_tap">
-            <label class="option_title" for="w_h">규격</label>
-            <div>
-              <form>
-                <input
-                  id="w_h"
-                  class="calc_width"
-                  required
-                  placeholder="가로"
-                  type="number"
-                  min="50"
-                  max="1219"
-                />
-                <input
-                  class="calc_height"
-                  required
-                  placeholder="세로"
-                  type="number"
-                  min="50"
-                  max="2438"
-                />
-              </form>
-            </div>
-          </div>
-          <div class="option_tap horizon_info">
-            <span>가로 : 50 mm ~ 1,219 mm</span>
-            <span>세로 : 50 mm ~ 2,438 mm</span>
-          </div>
-        </form>
-        <form class="submit_btn">
-          <input class="submit_btn" value="계산하기" type="submit" />
-        </form>
-        <div class="result_box hide">
-          <span class="result"></span>
-          <div class="result_info">
-            <span class="plate_cost"></span>
-            <span> + </span>
-            <span class="foundation_cost"></span>
-            <span> * </span>
-            <span class="result_quantity"></span>
-          </div>
-          <div class="naver_info">
-            <span class="count_info"></span>
-          </div>
+      <header>#22.8 스텐 셀프 견적</header>
+      <form class="option_box">
+        <div class="option_tap">
+          <label for="type" class="option_title">표면종류</label>
+          <select required id="type" class="select_box">
+            <option value="a">옵션을 선택해 주세요</option>
+            <option value="2B">2B</option>
+            <option value="HL">H/L</option>
+            <option value="Mirror">Mirror</option>
+            <option value="BLK_HL">Black H/L</option>
+            <option value="GOL_HL">Gold H/L</option>
+            <option value="GOL_Mirror">Gold Mirror</option>
+          </select>
         </div>
-        <div class="naver_box result_box hide">
-          <span>네이버 스토어에 하기와 같이 입력해 주세요</span>
+        <div class="option_tap">
+          <label for="thickness" class="option_title">두께</label>
+          <select required id="thickness">
+            <option value="a">옵션을 선택해 주세요</option>
+            <option value="0.8">0.8 T</option>
+            <option value="1">1 T</option>
+            <option value="1.2">1.2 T</option>
+            <option value="1.5">1.5 T</option>
+            <option value="2">2 T</option>
+          </select>
+        </div>
+        <div class="option_tap">
+          <label for="quantity" class="option_title">수량</label>
+          <input
+            type="number"
+            placeholder="수량"
+            id="quantity"
+            min="1"
+            required
+          />
+        </div>
+        <div class="option_tap">
+          <label class="option_title" for="w_h">규격</label>
+          <div>
+            <input
+              id="w_h"
+              class="option_width"
+              required
+              placeholder="가로"
+              type="number"
+              min="50"
+              max="1219"
+            />
+            <input
+              class="option_length"
+              required
+              placeholder="세로"
+              type="number"
+              min="50"
+              max="2438"
+            />
+          </div>
+          <!-- <div class="horizon_info hide">2222</div>
+          <div class="vertical_info hide">12</div> -->
+        </div>
+        <!-- <div class="option_tap horizon_info">
+          <span>가로 : 50 mm ~ 1,219 mm</span>
+          <span>세로 : 50 mm ~ 2,438 mm</span>
+        </div> -->
+        <input class="submit_btn" value="계산하기" type="button" />
+      </form>
+      <div class="result_box js-resultBox hide">
+        <span class="result">JAVA</span>
+        <span class="result">JAVA</span>
+        <span class="result">JAVA</span>
+        <div class="naver_box">
           <div class="naver_box--option">
-            <span class="js-naverBox">Example</span>
+            <div class="js-naver-product__info">Example</div>
             <div></div>
           </div>
           <div class="naver_box--adjustment">

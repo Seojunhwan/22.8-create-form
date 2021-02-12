@@ -1,186 +1,163 @@
-// const selectedType = document.getElementById("type").options[document.getElementById("type")]
 const typeSelectBox = document.getElementById("type"),
-  thickSelectBox = document.getElementById("thickness"),
-  result = document.querySelector(".result"),
-  resultPlate = document.querySelector(".plate_cost"),
-  resultFoundation = document.querySelector(".foundation_cost"),
-  resultQuantity = document.querySelector(".result_quantity"),
-  naverInfo = document.querySelector(".count_info"),
   submitBtn = document.querySelector(".submit_btn"),
-  quantity = document.querySelector("#quantity"),
-  naverBoxInfo = document.querySelector(".js-naverBox"),
-  naverBoxQuantity = document.querySelector(".js-quantity"),
-  naverBoxPrice = document.querySelector(".js-naverPrice"),
-  box = document.getElementsByTagName("select"),
-  box2 = document.getElementsByTagName("input");
+  optionType = document.querySelector("#type"),
+  optionThickness = document.querySelector("#thickness"),
+  optionQuantity = document.querySelector("#quantity"),
+  optionWidth = document.querySelector(".option_width"),
+  optionLength = document.querySelector(".option_length"),
+  resultBox = document.querySelector(".js-resultBox");
 
-function initialOption() {
-  const options = document.querySelectorAll("select > option");
-  options.forEach(function (option) {
-    option.classList.remove("hide");
-  });
-}
+const outputValueContainer = {};
 
-function appearResults() {
-  const resultTap = document.querySelectorAll(".result_box");
-  resultTap[0].classList.replace("hide", "active");
-  resultTap[1].classList.replace("hide", "active");
+function appearResultBox() {
+  resultBox.classList.replace("hide", "active");
 }
 
 function hideOptions() {
-  const mirDisabled = document.querySelector(".mir_disabled");
-  const otherDisabled = document.querySelectorAll(".other_disabled");
-  if (typeSelector() === "Mirror") {
-    initialOption();
-    mirDisabled.classList.add("hide");
+  const thicknessList = document.querySelector("#thickness");
+  thicknessList[1].classList.remove("hide-option");
+  thicknessList[2].classList.remove("hide-option");
+  thicknessList[3].classList.remove("hide-option");
+  thicknessList[4].classList.remove("hide-option");
+  thicknessList[5].classList.remove("hide-option");
+  if (inputValueSet().type === "Mirror") {
+    thicknessList[1].classList.add("hide-option");
+    thicknessList[1].classList.add("hide-option");
   } else if (
-    typeSelector() === "BLK_HL" ||
-    typeSelector() === "GOL_HL" ||
-    typeSelector() === "GOL_Mirror"
+    inputValueSet().type === "BLK_HL" ||
+    inputValueSet().type === "GOL_HL" ||
+    inputValueSet().type === "GOL_Mirror"
   ) {
-    initialOption();
-    otherDisabled.forEach(function (option) {
-      option.classList.add("hide");
-    });
-  } else {
-    initialOption();
+    thicknessList[1].classList.add("hide-option");
+    thicknessList[2].classList.add("hide-option");
+    thicknessList[4].classList.add("hide-option");
+    thicknessList[5].classList.add("hide-option");
   }
 }
 
-function unitPrice() {
-  const type = typeSelector();
-  const thick = thickSelector();
-  if (type === "2B") {
-    if (thick == 0.8) {
-      return 189;
-    }
-    if (thick == 1) {
-      return 227;
-    }
-    if (thick == 1.2) {
-      return 267;
-    }
-    if (thick == 1.5) {
-      return 326;
-    }
-    if (thick == 2) {
-      return 428;
-    }
-  }
-  if (type === "HL") {
-    if (thick == 0.8) {
-      return 210;
-    }
-    if (thick == 1) {
-      return 249;
-    }
-    if (thick == 1.2) {
-      return 293;
-    }
-    if (thick == 1.5) {
-      return 368;
-    }
-    if (thick == 2) {
-      return 480;
-    }
-  }
-  if (type === "Mirror") {
-    if (thick == 1) {
-      return 288;
-    }
-    if (thick == 1.2) {
-      return 335;
-    }
-    if (thick == 1.5) {
-      return 407;
-    }
-    if (thick == 2) {
-      return 530;
-    }
-  }
-  if (type === "BLK_HL") {
-    return 563;
-  }
-  if (type === "GOL_HL" || type === "GOL_Mirror") {
-    return 597;
-  }
+function inputValueSet() {
+  const inputValueContainer = {
+    type: optionType.value,
+    thickness: parseFloat(optionThickness.value),
+    quantity: parseInt(optionQuantity.value),
+    width: parseFloat(optionWidth.value),
+    length: parseFloat(optionLength.value),
+  };
+  return inputValueContainer;
 }
 
-function typeSelector() {
-  const typeSelect = document.getElementById("type").options.selectedIndex;
-  return typeSelectBox.options[typeSelect].value;
-}
-
-function thickSelector() {
-  const thickSelect = document.getElementById("thickness").options
-    .selectedIndex;
-  return thickSelectBox.options[thickSelect].value;
-}
-
-function sizeCalc() {
-  const widthValue = document.querySelector(".calc_width").value;
-  const heightValue = document.querySelector(".calc_height").value;
-  const width = Math.ceil(widthValue / 50) * 50;
-  const height = Math.ceil(heightValue / 50) * 50;
-  const sizeResult = (width * height) / 2500;
-  return sizeResult;
-}
-
-function plateCost() {
-  const result = sizeCalc() * unitPrice();
-  const calcResult = Math.ceil(result / 100) * 100;
-  if (calcResult < 1000) {
-    return 1000;
-  } else {
+function calcValue(value) {
+  function unitPrice() {
+    if (value.type === "2B") {
+      if (value.thickness == 0.8) {
+        return 189;
+      }
+      if (value.thickness == 1) {
+        return 227;
+      }
+      if (value.thickness == 1.2) {
+        return 267;
+      }
+      if (value.thickness == 1.5) {
+        return 326;
+      }
+      if (value.thickness == 2) {
+        return 428;
+      }
+    }
+    if (value.type === "HL") {
+      if (value.thickness == 0.8) {
+        return 210;
+      }
+      if (value.thickness == 1) {
+        return 249;
+      }
+      if (value.thickness == 1.2) {
+        return 293;
+      }
+      if (value.thickness == 1.5) {
+        return 368;
+      }
+      if (value.thickness == 2) {
+        return 480;
+      }
+    }
+    if (value.type === "Mirror") {
+      if (value.thickness == 1) {
+        return 288;
+      }
+      if (value.thickness == 1.2) {
+        return 335;
+      }
+      if (value.thickness == 1.5) {
+        return 407;
+      }
+      if (value.thickness == 2) {
+        return 530;
+      }
+    }
+    if (value.type === "BLK_HL") {
+      return 563;
+    }
+    if (value.type === "GOL_HL" || value.type === "GOL_Mirror") {
+      return 597;
+    }
+  }
+  function calcSize() {
+    const calcWidth = Math.ceil(value.width / 50) * 50;
+    const calcLength = Math.ceil(value.length / 50) * 50;
+    const calcResult = (calcWidth * calcLength) / 2500;
     return calcResult;
   }
-}
-
-function foundationCost() {
-  if (plateCost() < 10000) {
-    return 1000;
-  } else {
-    return 0;
+  function calcPlateCost() {
+    const result = Math.ceil((unitPrice() * calcSize()) / 100) * 100;
+    if (result < 1000) {
+      return 1000;
+    } else {
+      return result;
+    }
   }
+  function calcFoundationCost() {
+    if (calcPlateCost() < 10000) {
+      return 1000;
+    } else {
+      return 0;
+    }
+  }
+  const calcPrice = (calcPlateCost() + calcFoundationCost()) * value.quantity;
+  const calcNaverQuantity = calcPrice / 100;
+  outputValueContainer.price = calcPrice;
+  outputValueContainer.plateCost = calcPlateCost();
+  outputValueContainer.foundationCost = calcFoundationCost();
+  outputValueContainer.quantity = value.quantity;
+  outputValueContainer.naverQuantity = calcNaverQuantity;
 }
 
-function calcCost() {
-  return (plateCost() + foundationCost()) * quantity.value;
-}
-
-function handleChange() {
-  hideOptions();
-}
-
-function inputResult() {
-  const resultOptionValue = calcCost();
-  const resultPlateValue = plateCost();
-  const resultFoundationValue = foundationCost();
-  const resultNaverQuantity = calcCost() / 100;
-  const widthValue = document.querySelector(".calc_width").value;
-  const heightValue = document.querySelector(".calc_height").value;
-  const thickSelect = document.getElementById("thickness").options
-    .selectedIndex;
-  const typeSelect = document.getElementById("type").options.selectedIndex;
-  result.innerText = `고객님께서 선택해주신 옵션은 ${resultOptionValue} 원 입니다.`;
-  resultPlate.innerText = `판재비 ${resultPlateValue} 원`;
-  resultFoundation.innerText = `재단비 : ${resultFoundationValue} 원`;
-  resultQuantity.innerText = `${quantity.value} 개`;
-  naverInfo.innerText = `네이버 스토어 구매 수량에 ${resultNaverQuantity} 개 입력해 주시기 바랍니다.`;
-  naverBoxInfo.innerText = `${widthValue} / ${heightValue} / ${typeSelectBox.options[typeSelect].value} / ${thickSelectBox.options[thickSelect].value} T`;
-  naverBoxPrice.innerText = `${resultOptionValue}원`;
-  naverBoxQuantity.innerText = resultNaverQuantity;
+function appendValue(output) {
+  const resultList = document.querySelectorAll(".result");
+  const naverProductInfo = document.querySelector(".js-naver-product__info");
+  const naverQuantityResult = document.querySelector(".js-quantity");
+  const naverPriceResult = document.querySelector(".js-naverPrice");
+  resultList[0].innerText = `고객님께서 선택해주신 옵션은 ${output.price} 원 입니다.`;
+  resultList[1].innerText = `판재비 ${output.plateCost} 원 + 재단비 ${output.foundationCost} 원 X ${output.quantity} 개`;
+  resultList[2].innerHTML = `하기와 같이 네이버 스토어 구매 수량에 ${output.naverQuantity}개 입력해 주시기 바랍니다.`;
+  naverProductInfo.innerText = `${inputValueSet().width} / ${
+    inputValueSet().length
+  } / ${inputValueSet().type} / ${inputValueSet().thickness} T`;
+  naverQuantityResult.innerText = output.naverQuantity;
+  naverPriceResult.innerText = `${output.price} 원`;
 }
 
 function handleSubmit(event) {
-  event.preventDefault();
-  appearResults();
-  inputResult();
+  appearResultBox();
+  calcValue(inputValueSet());
+  hideOptions();
+  appendValue(outputValueContainer);
 }
 
 function init() {
-  typeSelectBox.addEventListener("change", handleChange);
-  submitBtn.addEventListener("submit", handleSubmit);
+  typeSelectBox.addEventListener("change", hideOptions);
+  submitBtn.addEventListener("click", handleSubmit);
 }
 
 init();
