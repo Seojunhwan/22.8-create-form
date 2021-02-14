@@ -1,7 +1,7 @@
 @import "variables.css";
 
 body {
-  background-color: bisque;
+  background-color: antiquewhite;
 }
 
 main {
@@ -96,12 +96,14 @@ input:not(.submit_btn):focus {
 
 .submit_btn:focus {
   outline: none;
+  opacity: 0.8;
 }
 
 .submit_btn:hover {
   background-color: #ff9999;
   border: 2px solid white;
   color: white;
+  cursor: pointer;
 }
 
 .hide {
