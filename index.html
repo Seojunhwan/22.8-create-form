@@ -7,8 +7,8 @@
       content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
     />
     <title>22.8</title>
-    <!-- <link rel="stylesheet" href="style.css" /> -->
-    <link rel="stylesheet" href="mobile.css" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="mobile.css" /> -->
   </head>
   <body>
     <main>
@@ -54,7 +54,7 @@
               id="w_h"
               class="option_width"
               required
-              placeholder="가로"
+              placeholder="가로 (mm)"
               type="number"
               min="50"
               max="1219"
@@ -62,7 +62,7 @@
             <input
               class="option_length"
               required
-              placeholder="세로"
+              placeholder="세로 (mm)"
               type="number"
               min="50"
               max="2438"
@@ -81,29 +81,38 @@
         <span class="result">JAVA</span>
         <span class="result">JAVA</span>
         <span class="result">JAVA</span>
-        <div class="naver_box">
-          <div class="naver_box--option">
-            <div class="js-naver-product__info">Example</div>
-            <div></div>
-          </div>
-          <div class="naver_box--adjustment">
-            <div class="adjust--quantity">
-              <div class="operator">-</div>
-              <div class="quantity js-quantity">1</div>
-              <div class="operator">+</div>
-            </div>
-            <div class="naver-box--price">
-              <span class="js-naverPrice">100원</span>
-            </div>
-          </div>
-          <a
-            href="https://smartstore.naver.com/skeassmall/products/5032676625"
-            target="_blank"
-            ><div class="naver_link">Naver</div></a
-          >
+        <div class="naver_item_container">
+          <ul class="naver_item_list">
+            <!-- <div class="naver_box">
+              <div class="naver_box--option">
+                <div class="js-naver-product__info">Example</div>
+                <div></div>
+              </div>
+              <div class="naver_box--adjustment">
+                <div class="adjust--quantity">
+                  <div class="operator">-</div>
+                  <div class="quantity js-quantity">1</div>
+                  <div class="operator">+</div>
+                </div>
+                <div class="naver-box--price">
+                  <span class="js-naverPrice">100원</span>
+                </div>
+              </div>
+            </div> -->
+          </ul>
         </div>
+        <div class="total-price">
+          <div></div>
+          <span class="total-price--value">12</span>
+        </div>
+        <a
+          href="https://smartstore.naver.com/skeassmall/products/5032676625"
+          target="_blank"
+          ><div class="naver_link">주문하러가기</div></a
+        >
       </div>
     </main>
+
     <script src="index.js"></script>
   </body>
 </html>
