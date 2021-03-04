@@ -6,12 +6,21 @@ const typeSelectBox = document.getElementById("type"),
   optionWidth = document.querySelector(".option_width"),
   optionLength = document.querySelector(".option_length"),
   resultBox = document.querySelector(".js-resultBox"),
-  naverList = document.querySelector(".naver_item_list");
+  naverList = document.querySelector(".naver_item_list"),
+  admin = document.querySelector("header");
 
 let validationValueCheck = false;
 
 const outputValueContainer = {};
 let totalPrice = [];
+
+const adminActive = () => {
+  const primeCostDisplay = document.querySelectorAll(".js-admin");
+  primeCostDisplay.forEach((primeCost) => {
+    // primeCost.classList.add("hide");
+    primeCost.classList.toggle("hide");
+  });
+};
 
 const appearResultBox = () => {
   resultBox.classList.replace("hide", "active");
@@ -107,6 +116,62 @@ const calcValue = (value) => {
       return 597;
     }
   };
+  const primeCost = () => {
+    if (value.type === "2B") {
+      if (value.thickness == 0.8) {
+        return 59;
+      }
+      if (value.thickness == 1) {
+        return 73;
+      }
+      if (value.thickness == 1.2) {
+        return 86;
+      }
+      if (value.thickness == 1.5) {
+        return 105;
+      }
+      if (value.thickness == 2) {
+        return 138;
+      }
+    }
+    if (value.type === "HL") {
+      if (value.thickness == 0.8) {
+        return 60;
+      }
+      if (value.thickness == 1) {
+        return 73;
+      }
+      if (value.thickness == 1.2) {
+        return 86;
+      }
+      if (value.thickness == 1.5) {
+        return 105;
+      }
+      if (value.thickness == 2) {
+        return 137;
+      }
+    }
+    if (value.type === "Mirror") {
+      if (value.thickness == 1) {
+        return 80;
+      }
+      if (value.thickness == 1.2) {
+        return 93;
+      }
+      if (value.thickness == 1.5) {
+        return 113;
+      }
+      if (value.thickness == 2) {
+        return 147;
+      }
+    }
+    if (value.type === "BLK_HL") {
+      return 148;
+    }
+    if (value.type === "GOL_HL" || value.type === "GOL_Mirror") {
+      return 157;
+    }
+  };
   const calcSize = () => {
     const calcWidth = Math.ceil(value.width / 50) * 50;
     const calcLength = Math.ceil(value.length / 50) * 50;
@@ -121,6 +186,10 @@ const calcValue = (value) => {
       return result;
     }
   };
+  const calcPrimeCost = () => {
+    return primeCost() * calcSize();
+  };
+  calcPrimeCost();
   const calcFoundationCost = () => {
     if (calcPlateCost() < 10000) {
       return 1000;
@@ -135,6 +204,7 @@ const calcValue = (value) => {
   outputValueContainer.foundationCost = calcFoundationCost();
   outputValueContainer.quantity = value.quantity;
   outputValueContainer.naverQuantity = calcNaverQuantity;
+  outputValueContainer.primeCost = calcPrimeCost();
 };
 
 const appendValue = (output) => {
@@ -159,16 +229,19 @@ const appendOptions = (output) => {
   const naverBox = document.createElement("div");
   const naverBoxOption = document.createElement("div");
   const product__info = document.createElement("div");
-  const tempDiv = document.createElement("div");
+  const admin = document.createElement("div");
 
   naverItem.className = "naver_item";
   naverBox.className = "naver_box";
   naverBoxOption.className = "naver_box--option";
   product__info.className = "js-naver-product__info";
+  admin.className = "hide js-admin";
+  // admin.className = "js-admin";
 
   product__info.innerText = `${inputValueSet().width} / ${
     inputValueSet().length
   } / ${inputValueSet().type} / ${inputValueSet().thickness} T`;
+  admin.innerText = `${output.primeCost}`;
 
   const naverBoxAdjustment = document.createElement("div");
   const adjustQuantity = document.createElement("div");
@@ -194,7 +267,7 @@ const appendOptions = (output) => {
   adjustQuantity.appendChild(operPlus);
 
   naverBoxOption.appendChild(product__info);
-  naverBoxOption.appendChild(tempDiv);
+  naverBoxOption.appendChild(admin);
   naverBox.appendChild(naverBoxOption);
   naverItem.appendChild(naverBox);
   naverList.appendChild(naverItem);
@@ -260,6 +333,7 @@ const handleSubmit = (event) => {
 };
 
 const init = () => {
+  admin.addEventListener("dblclick", adminActive);
   typeSelectBox.addEventListener("change", hideOptions);
   submitBtn.addEventListener("click", handleSubmit);
 };
