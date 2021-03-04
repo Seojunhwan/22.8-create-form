@@ -17,7 +17,6 @@ let totalPrice = [];
 const adminActive = () => {
   const primeCostDisplay = document.querySelectorAll(".js-admin");
   primeCostDisplay.forEach((primeCost) => {
-    // primeCost.classList.add("hide");
     primeCost.classList.toggle("hide");
   });
 };
