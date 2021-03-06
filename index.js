@@ -237,9 +237,11 @@ const appendOptions = (output) => {
   admin.className = "hide js-admin";
   // admin.className = "js-admin";
 
-  product__info.innerText = `${inputValueSet().width} / ${
+  product__info.innerText = `${inputValueSet().width} * ${
     inputValueSet().length
-  } / ${inputValueSet().type} / ${inputValueSet().thickness} T`;
+  } / ${inputValueSet().quantity} / ${inputValueSet().type} ${
+    inputValueSet().thickness
+  } T`;
   admin.innerText = `${output.primeCost}`;
 
   const naverBoxAdjustment = document.createElement("div");
@@ -314,7 +316,7 @@ const calcTotalPrice = () => {
     totalPrice.push(parseInt(res));
   }
   const reducer = (acc, current) => acc + current;
-  naverTotalPrice.innerText = `Total : ${totalPrice.reduce(reducer)}원`;
+  naverTotalPrice.innerText = `${totalPrice.reduce(reducer)}원`;
   totalPrice = [];
 };
 
@@ -332,7 +334,7 @@ const handleSubmit = (event) => {
 };
 
 const init = () => {
-  admin.addEventListener("dblclick", adminActive);
+  // admin.addEventListener("dblclick", adminActive);
   typeSelectBox.addEventListener("change", hideOptions);
   submitBtn.addEventListener("click", handleSubmit);
 };

@@ -155,6 +155,8 @@ input:not(.submit_btn):focus {
   width: 100%;
   height: 100%;
   overflow-y: scroll;
+  border-top: var(--naver-border);
+  border-bottom: var(--naver-border);
 }
 
 .naver_item_list {
@@ -183,7 +185,7 @@ input:not(.submit_btn):focus {
   align-items: center;
   width: 90%;
   padding: 0px;
-  border-top: var(--naver-border);
+  /* border-top: var(--naver-border); */
 }
 
 .naver_box--option {
@@ -233,15 +235,18 @@ input:not(.submit_btn):focus {
 
 .total-price {
   display: flex;
-  /* align-items: flex-end; */
+  align-items: center;
   justify-content: space-between;
-  height: 7%;
+  padding: 3% 0%;
   width: 100%;
 }
 
 .total-price--value {
   display: block;
-  padding: 0px 35px;
+  color: #6b91db;
+  font-size: 130%;
+  font-weight: bold;
+  /* padding: 0px 35px; */
 }
 
 .result_box a {
@@ -268,7 +273,7 @@ a:hover {
 .naver_link {
   text-align: center;
   /* width: 100%; */
-  margin-top: 25px;
+  /* margin-top: 25px; */
   padding: 15px 50px;
   color: white;
   border-radius: 15px;
@@ -286,49 +291,57 @@ a:hover {
     margin-top: 0px;
     justify-content: space-around;
   }
+  header {
+    position: fixed;
+    width: 100%;
+    top: 0%;
+    padding: 3% 0px;
+    border-radius: 0%;
+    font-size: 16px;
+  }
+  .option_box {
+    margin-top: 10%;
+    width: 80%;
+    height: 50%;
+  }
+  .option_title {
+    font-size: 15px;
+  }
+  .option_tap {
+    height: 18%;
+  }
+  .option_tap:nth-child(4) {
+    padding-top: 10px;
+    padding-bottom: 13px;
+  }
+  .option_tap:nth-child(4) div {
+    width: 50%;
+  }
+  .option_tap:nth-child(4) input {
+    width: 100%;
+  }
   .result_box {
     width: 100%;
     margin-top: 0px;
     padding: 0px;
     border-radius: 0px;
   }
-
   .naver_link {
-    margin-top: 10px;
-  }
-  header {
-    font-size: 16px;
+    margin: 0%;
+    /* margin-top: 10px; */
     width: 100%;
-    padding: 10px 0px;
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
   }
-  .option_title {
-    font-size: 15px;
-  }
-
-  .option_box {
-    width: 80%;
-    height: 50%;
+  .result_box a {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
   select,
   input {
     width: 50%;
     padding: 5px 0px;
-  }
-
-  .option_tap {
-    height: 18%;
-  }
-
-  .option_tap:nth-child(4) {
-    padding-top: 10px;
-    padding-bottom: 13px;
-  }
-
-  .option_tap:nth-child(4) div {
-    width: 50%;
-  }
-  .option_tap:nth-child(4) input {
-    width: 100%;
   }
 
   .submit_btn {
@@ -339,13 +352,20 @@ a:hover {
     margin: 6px 0px;
   }
 
-  .result_box span {
+  .result_box > span:nth-child(2) {
     font-size: 11px;
   }
   .result_box span:not(:nth-child(2)) {
     margin: 10px 0px;
     font-size: 13px;
     font-weight: bold;
+  }
+  .total-price {
+    box-sizing: border-box;
+    padding: 2% 5%;
+  }
+  .total-price--value {
+    font-size: 15px;
   }
 }
 
@@ -365,7 +385,6 @@ a:hover {
   .result_box {
     width: 35%;
   }
-
   select,
   input {
     width: 50%;
