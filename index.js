@@ -228,7 +228,12 @@ const appendOptions = (output) => {
   const naverBox = document.createElement("div");
   const naverBoxOption = document.createElement("div");
   const product__info = document.createElement("div");
+  const deleteBtn = document.createElement("button");
   const admin = document.createElement("div");
+
+  deleteBtn.className = "jsDeleteBtn";
+  deleteBtn.innerHTML = "X";
+  deleteBtn.addEventListener("click", handleDelBtnClick);
 
   naverItem.className = "naver_item";
   naverBox.className = "naver_box";
@@ -269,6 +274,7 @@ const appendOptions = (output) => {
 
   naverBoxOption.appendChild(product__info);
   naverBoxOption.appendChild(admin);
+  naverBoxOption.appendChild(deleteBtn);
   naverBox.appendChild(naverBoxOption);
   naverItem.appendChild(naverBox);
   naverList.appendChild(naverItem);
@@ -311,12 +317,16 @@ const calcTotalPrice = () => {
       let res = item.innerText.replace(/[^0-9]/g, "");
       totalPrice.push(parseInt(res));
     });
-  } else {
+  } else if (itemPrice.length >= 1) {
     let res = itemPrice[0].innerHTML.replace(/[^0-9]/g, "");
     totalPrice.push(parseInt(res));
   }
-  const reducer = (acc, current) => acc + current;
-  naverTotalPrice.innerText = `${totalPrice.reduce(reducer)}원`;
+  if (itemPrice.length === 0) {
+    naverTotalPrice.innerText = "0원";
+  } else {
+    const reducer = (acc, current) => acc + current;
+    naverTotalPrice.innerText = `${totalPrice.reduce(reducer)}원`;
+  }
   totalPrice = [];
 };
 
@@ -331,6 +341,12 @@ const handleSubmit = (event) => {
     validationValueCheck = false;
     calcTotalPrice();
   }
+};
+
+const handleDelBtnClick = (event) => {
+  const delTarget = event.target.parentElement.parentElement.parentElement;
+  naverList.removeChild(delTarget);
+  calcTotalPrice();
 };
 
 const init = () => {
