@@ -7,92 +7,95 @@
       content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
     />
     <title>22.8</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
       <header>#22.8 스텐 셀프 견적</header>
-      <form class="option_box">
-        <div class="option_tap">
-          <label for="type" class="option_title">표면종류</label>
-          <select required id="type" class="select_box">
-            <option value="a">옵션을 선택해 주세요</option>
-            <option value="2B">2B</option>
-            <option value="HL">H/L</option>
-            <option value="Mirror">Mirror</option>
-            <option value="BLK_HL">Black H/L</option>
-            <option value="GOL_HL">Gold H/L</option>
-            <option value="GOL_Mirror">Gold Mirror</option>
-          </select>
-        </div>
-        <div class="option_tap">
-          <label for="thickness" class="option_title">두께</label>
-          <select required id="thickness">
-            <option value="a">옵션을 선택해 주세요</option>
-            <option value="0.8">0.8 T</option>
-            <option value="1">1 T</option>
-            <option value="1.2">1.2 T</option>
-            <option value="1.5">1.5 T</option>
-            <option value="2">2 T</option>
-          </select>
-        </div>
-        <div class="option_tap">
-          <label for="quantity" class="option_title">수량</label>
-          <input
-            type="number"
-            placeholder="수량"
-            id="quantity"
-            min="1"
-            required
-          />
-        </div>
-        <div class="option_tap">
-          <label class="option_title" for="w_h">규격</label>
-          <div>
+      <section>
+        <form class="option_box">
+          <div class="option_tap">
+            <label for="type" class="option_title">표면종류</label>
+            <select required id="type" class="select_box">
+              <option value="" selected disabled>옵션을 선택해 주세요</option>
+              <option value="2B">2B</option>
+              <option value="HL">H/L</option>
+              <option value="Mir">Mirror</option>
+              <option value="BLK_HL">Black H/L</option>
+              <option value="GOL_HL">Gold H/L</option>
+              <option value="GOL_Mirror">Gold Mirror</option>
+            </select>
+          </div>
+          <div class="option_tap">
+            <label for="thickness" class="option_title">두께</label>
+            <select required id="thickness">
+              <option value="" selected disabled>옵션을 선택해 주세요</option>
+              <option value="0.8">0.8 T</option>
+              <option value="1">1 T</option>
+              <option value="1.2">1.2 T</option>
+              <option value="1.5">1.5 T</option>
+              <option value="2">2 T</option>
+            </select>
+          </div>
+          <div class="option_tap">
+            <label for="quantity" class="option_title">수량</label>
             <input
-              id="w_h"
-              class="option_width"
-              required
-              placeholder="가로 (mm)"
               type="number"
-              min="50"
-              max="1219"
-            />
-            <input
-              class="option_length"
+              placeholder="수량"
+              id="quantity"
+              min="1"
               required
-              placeholder="세로 (mm)"
-              type="number"
-              min="50"
-              max="2438"
             />
           </div>
-          <!-- <div class="horizon_info hide">2222</div>
-          <div class="vertical_info hide">12</div> -->
+          <div class="option_tap">
+            <label class="option_title" for="size">규격</label>
+            <div>
+              <span>가로 : 50 mm ~ 1,219 mm</span>
+              <input
+                id="w_h"
+                class="option_width"
+                required
+                placeholder="가로 (mm)"
+                type="number"
+                min="50"
+                max="1219"
+              />
+            </div>
+            <div>
+              <span>세로 : 50 mm ~ 2,438 mm</span>
+              <input
+                class="option_height"
+                required
+                placeholder="세로 (mm)"
+                type="number"
+                min="50"
+                max="2438"
+              />
+            </div>
+          </div>
+          <input class="submit_btn" value="계산 & 추가하기" type="button" />
+        </form>
+      </section>
+      <section>
+        <div class="result_box js-resultBox hide">
+          <span class="result">JAVA</span>
+          <span class="result">JAVA</span>
+          <span class="result">JAVA</span>
+          <div class="naver_item_container">
+            <ul class="naver_item_list"></ul>
+          </div>
+          <div class="total-price">
+            <span>총 상품 금액</span>
+            <span class="total-price--value"></span>
+          </div>
+          <a
+            href="https://smartstore.naver.com/skeassmall/products/5032676625"
+            target="_blank"
+            ><div class="naver_link">주문하러가기</div></a
+          >
         </div>
-        <!-- <div class="option_tap horizon_info">
-          <span>가로 : 50 mm ~ 1,219 mm</span>
-          <span>세로 : 50 mm ~ 2,438 mm</span>
-        </div> -->
-        <input class="submit_btn" value="계산 & 추가하기" type="button" />
-      </form>
-      <div class="result_box js-resultBox hide">
-        <span class="result">JAVA</span>
-        <span class="result">JAVA</span>
-        <span class="result">JAVA</span>
-        <div class="naver_item_container">
-          <ul class="naver_item_list"></ul>
-        </div>
-        <div class="total-price">
-          <span>총 상품 금액</span>
-          <span class="total-price--value"></span>
-        </div>
-        <a
-          href="https://smartstore.naver.com/skeassmall/products/5032676625"
-          target="_blank"
-          ><div class="naver_link">주문하러가기</div></a
-        >
-      </div>
+      </section>
     </main>
     <script src="index.js"></script>
   </body>
