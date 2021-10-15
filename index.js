@@ -1,4 +1,9 @@
 const type = document.getElementById("type");
+const thick = document.getElementById("thickness");
+const quantity = document.getElementById("quantity");
+const width = document.querySelector(".js_Width");
+const height = document.querySelector(".js_Height");
+const btn = document.querySelector(".js_Btn");
 
 class Material {
   constructor(type, thick, quantity, width, height) {
@@ -20,162 +25,82 @@ class Material {
 const priceInfo = {
   "2B": {
     name: "2B",
-    price: [189, 227, 267, 326, 428],
+    price: { 0.8: 189, 1: 227, 1.2: 267, 1.5: 326, 2: 428 },
   },
   HL: {
     name: "H/L",
-    price: [210, 249, 293, 368, 480],
+    price: { 0.8: 210, 1: 249, 1.2: 293, 1.5: 368, 2: 480 },
   },
   Mir: {
     name: "Mirror",
-    price: [288, 335, 407, 530],
+    price: { 1: 288, 1.2: 335, 1.5: 407, 2: 530 },
   },
-  BLK_HL: {
+  BLK_H: {
     name: "Black H/L",
-    price: [563],
+    price: { 1.2: 563 },
   },
   GOL_H: {
     name: "Gold H/L",
-    price: [597],
+    price: { 1.2: 597 },
   },
   GOL_M: {
     name: "Gold Mirror",
-    price: [597],
+    price: { 1.2: 597 },
   },
 };
 
-const mate = new Material();
-console.log(mate);
-
-const unitPrice = (type, thick) => {
-  console.log(type, thick);
-  console.log(priceInfo["2B"]);
-  switch (type) {
-    case "2B":
-      switch (thick) {
-        case 0.8:
-          mate.thick = priceInfo.B.price[0];
-        case 1:
-          mate.thick = priceInfo.B.price[1];
-        case 1.2:
-          mate.thick = priceInfo.B.price[2];
-        case 1.5:
-          mate.thick = priceInfo.B.price[3];
-        case 2:
-          mate.thick = priceInfo.B.price[4];
-        default:
-          mate.thick = "Thick_Error";
-      }
-      break;
-    case "HL":
-      switch (thick) {
-        case 0.8:
-          mate.thick = priceInfo.HL.price[0];
-        case 1:
-          mate.thick = priceInfo.HL.price[1];
-        case 1.2:
-          mate.thick = priceInfo.HL.price[2];
-        case 1.5:
-          mate.thick = priceInfo.HL.price[3];
-        case 2:
-          mate.thick = priceInfo.HL.price[4];
-        default:
-          mate.thick = "Thick_Error";
-      }
-      break;
-    case "Mir":
-      switch (thick) {
-        case 1:
-          mate.thick = priceInfo.Mir.price[1];
-        case 1.2:
-          mate.thick = priceInfo.Mir.price[2];
-        case 1.5:
-          mate.thick = priceInfo.Mir.price[3];
-        case 2:
-          mate.thick = priceInfo.Mir.price[4];
-        default:
-          mate.thick = "Thick_Error";
-      }
-      break;
-    case "BLK_HL":
-      switch (thick) {
-        case 0.8:
-          mate.thick = priceInfo.BLK_HL.price[0];
-        default:
-          mate.thick = "Thick_Error";
-      }
-      break;
-    case "GOL_HL":
-      break;
-    case "GOL_Mir":
-      break;
-    default:
-      break;
-  }
-  console.log(mate);
+const adminInfo = {
+  "2B": {
+    name: "2B",
+    price: { 0.8: 59, 1: 73, 1.2: 86, 1.5: 105, 2: 138 },
+  },
+  HL: {
+    name: "H/L",
+    price: { 0.8: 60, 1: 73, 1.2: 86, 1.5: 105, 2: 137 },
+  },
+  Mir: {
+    name: "Mirror",
+    price: { 1: 80, 1.2: 93, 1.5: 113, 2: 147 },
+  },
+  BLK_H: {
+    name: "Black H/L",
+    price: { 1.2: 148 },
+  },
+  GOL_H: {
+    name: "Gold H/L",
+    price: { 1.2: 157 },
+  },
+  GOL_M: {
+    name: "Gold Mirror",
+    price: { 1.2: 157 },
+  },
 };
-const primeCost = () => {
-  if (value.type === "2B") {
-    if (value.thickness == 0.8) {
-      return 59;
-    }
-    if (value.thickness == 1) {
-      return 73;
-    }
-    if (value.thickness == 1.2) {
-      return 86;
-    }
-    if (value.thickness == 1.5) {
-      return 105;
-    }
-    if (value.thickness == 2) {
-      return 138;
-    }
-  }
-  if (value.type === "HL") {
-    if (value.thickness == 0.8) {
-      return 60;
-    }
-    if (value.thickness == 1) {
-      return 73;
-    }
-    if (value.thickness == 1.2) {
-      return 86;
-    }
-    if (value.thickness == 1.5) {
-      return 105;
-    }
-    if (value.thickness == 2) {
-      return 137;
-    }
-  }
-  if (value.type === "Mirror") {
-    if (value.thickness == 1) {
-      return 80;
-    }
-    if (value.thickness == 1.2) {
-      return 93;
-    }
-    if (value.thickness == 1.5) {
-      return 113;
-    }
-    if (value.thickness == 2) {
-      return 147;
-    }
-  }
-  if (value.type === "BLK_HL") {
-    return 148;
-  }
-  if (value.type === "GOL_HL" || value.type === "GOL_Mirror") {
-    return 157;
+
+const currentMaterial = new Material();
+console.log(currentMaterial);
+
+const unitPrice = (type, thick, quantity, width, height) => {
+  if (type && thick && quantity > 0 && width >= 50 && height >= 50) {
+    currentMaterial.type = priceInfo[type].name;
+    currentMaterial.thick = priceInfo[type].price[thick];
+    currentMaterial.quantity = parseInt(quantity);
+    currentMaterial.width = parseInt(width);
+    currentMaterial.height = parseInt(height);
+  } else {
+    alert("뭔가 조금 이상하군요");
   }
 };
 
-const handleChange = () => {
-  unitPrice(type.value);
+const handleSubmit = (event) => {
+  event.preventDefault();
+  unitPrice(type.value, thick.value, quantity.value, width.value, height.value);
+  console.log(currentMaterial);
+  currentMaterial.clear();
+  console.log(currentMaterial);
 };
+
 const init = () => {
-  type.addEventListener("change", handleChange);
+  btn.addEventListener("click", handleSubmit);
 };
 
 init();

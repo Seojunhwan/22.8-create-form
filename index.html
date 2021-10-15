@@ -22,9 +22,9 @@
               <option value="2B">2B</option>
               <option value="HL">H/L</option>
               <option value="Mir">Mirror</option>
-              <option value="BLK_HL">Black H/L</option>
-              <option value="GOL_HL">Gold H/L</option>
-              <option value="GOL_Mirror">Gold Mirror</option>
+              <option value="BLK_H">Black H/L</option>
+              <option value="GOL_H">Gold H/L</option>
+              <option value="GOL_M">Gold Mirror</option>
             </select>
           </div>
           <div class="option_tap">
@@ -49,12 +49,11 @@
             />
           </div>
           <div class="option_tap">
-            <label class="option_title" for="size">규격</label>
+            <label class="option_title">규격</label>
             <div>
               <span>가로 : 50 mm ~ 1,219 mm</span>
               <input
-                id="w_h"
-                class="option_width"
+                class="option_width js_Width"
                 required
                 placeholder="가로 (mm)"
                 type="number"
@@ -65,7 +64,7 @@
             <div>
               <span>세로 : 50 mm ~ 2,438 mm</span>
               <input
-                class="option_height"
+                class="option_height js_Height"
                 required
                 placeholder="세로 (mm)"
                 type="number"
@@ -74,7 +73,11 @@
               />
             </div>
           </div>
-          <input class="submit_btn" value="계산 & 추가하기" type="button" />
+          <input
+            class="submit_btn js_Btn"
+            value="계산 & 추가하기"
+            type="submit"
+          />
         </form>
       </section>
       <section>
