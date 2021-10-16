@@ -12,15 +12,38 @@ class Material {
     this.quantity = quantity;
     this.width = width;
     this.height = height;
+    this.unitPrice = null;
+    this.size = null;
+    this.plateCost = 1000;
+    this.foundCost = 0;
+  }
+  setPrice() {
+    this.size =
+      (Math.ceil(this.width / 50) * 50 * (Math.ceil(this.height / 50) * 50)) /
+      2500;
+    const result = Math.ceil((this.unitPrice * this.size) / 100) * 100;
+    if (result > 1000) {
+      this.plateCost = result;
+    }
+    if (this.plateCost < 10000) {
+      this.foundCost = 1000;
+    }
+    this.price = (this.plateCost + this.foundCost) * this.quantity;
   }
   clear() {
-    this.type = "";
-    this.thick = 0;
-    this.quantity = 0;
-    this.width = 0;
-    this.height = 0;
+    this.type = null;
+    this.thick = null;
+    this.quantity = null;
+    this.width = null;
+    this.height = null;
+    this.unitPrice = null;
+    this.size = null;
+    this.plateCost = 1000;
+    this.foundCost = 0;
   }
 }
+
+const material = new Material();
 
 const priceInfo = {
   "2B": {
@@ -76,31 +99,77 @@ const adminInfo = {
   },
 };
 
-const currentMaterial = new Material();
-console.log(currentMaterial);
+const putMaterialInfo = (type, thick, quantity, width, height) => {
+  material.type = priceInfo[type].name;
+  material.unitPrice = priceInfo[type].price[thick];
+  material.thick = parseFloat(thick);
+  material.quantity = parseInt(quantity);
+  material.width = parseInt(width);
+  material.height = parseInt(height);
+};
 
-const unitPrice = (type, thick, quantity, width, height) => {
-  if (type && thick && quantity > 0 && width >= 50 && height >= 50) {
-    currentMaterial.type = priceInfo[type].name;
-    currentMaterial.thick = priceInfo[type].price[thick];
-    currentMaterial.quantity = parseInt(quantity);
-    currentMaterial.width = parseInt(width);
-    currentMaterial.height = parseInt(height);
-  } else {
-    alert("뭔가 조금 이상하군요");
+const changeOptions = () => {
+  for (let index = 1; index <= 5; index++) {
+    thick[index].removeAttribute("disabled");
   }
+  switch (type.value) {
+    case "Mir":
+      thick[1].setAttribute("disabled", "");
+      thick[2].setAttribute("selected", "");
+      break;
+    case "BLK_H":
+    case "GOL_H":
+    case "GOL_M":
+      for (let index = 1; index <= 5; index++) {
+        if (index == 3) {
+          thick[3].setAttribute("selected", "");
+          continue;
+        }
+        thick[index].setAttribute("disabled", "");
+      }
+      break;
+  }
+};
+
+const handleTypeChange = () => {
+  changeOptions();
+};
+
+const printResult = () => {
+  // TODO 결과 화면에 표시하는 코드 작성 필요
+  // TODO 결과 레이아웃 구성 필요
 };
 
 const handleSubmit = (event) => {
   event.preventDefault();
-  unitPrice(type.value, thick.value, quantity.value, width.value, height.value);
-  console.log(currentMaterial);
-  currentMaterial.clear();
-  console.log(currentMaterial);
+  if (
+    type.value &&
+    thick.value &&
+    quantity.value > 0 &&
+    width.value >= 50 &&
+    height.value >= 50
+  ) {
+    putMaterialInfo(
+      type.value,
+      thick.value,
+      quantity.value,
+      width.value,
+      height.value
+    );
+  } else {
+    alert("뭔가 조금 이상하군요");
+    return;
+  }
+  material.setPrice();
+  printResult();
+  console.log(material.price);
+  console.log(material);
+  // material.clear();
 };
 
 const init = () => {
   btn.addEventListener("click", handleSubmit);
+  type.addEventListener("change", handleTypeChange);
 };
 
 init();
