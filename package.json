@@ -1,0 +1,22 @@
+{
+  "name": "22.8-create-form",
+  "version": "1.0.0",
+  "description": "naver store 22.8",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Seojunhwan/22.8-create-form.git"
+  },
+  "author": "Junhwan Seo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Seojunhwan/22.8-create-form/issues"
+  },
+  "homepage": "https://github.com/Seojunhwan/22.8-create-form#readme",
+  "dependencies": {
+    "sass": "^1.43.2"
+  }
+}
