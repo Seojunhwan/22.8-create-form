@@ -4,6 +4,8 @@ const quantity = document.getElementById("quantity");
 const width = document.querySelector(".js_Width");
 const height = document.querySelector(".js_Height");
 const btn = document.querySelector(".js_Btn");
+const result = document.querySelector(".js-resultBox");
+const resultPrice = document.querySelector(".total-price--value");
 
 const GS = 7.93;
 const materialList = [];
@@ -149,9 +151,27 @@ const handleSubmit = (event) => {
 };
 
 const printResult = () => {
+  const itemList = document.createElement("ul");
+  const item = document.createElement("li");
+  const itemInfo = document.createElement("span");
+  let totalPrice = 0;
   if (materialList.length) {
-    console.dir(materialList[0]);
+    materialList.forEach((material) => {
+      itemInfo.innerHTML = `${material.width} * ${material.height} / ${material.quantity} / ${material.type} / ${material.thick} T`;
+      item.appendChild(itemInfo);
+      itemList.appendChild(item);
+      totalPrice += material.price;
+      console.log(totalPrice);
+    });
+    resultPrice.innerHTML = totalPrice;
+    result.appendChild(itemList);
+    // delbtn.addEventListener("click", handleDelBtn);
   }
+};
+
+const handleDelBtn = () => {
+  const index = 0;
+  materialList.splice(index, 1); //!배열 요소 삭제
 };
 
 const init = () => {
