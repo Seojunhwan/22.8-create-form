@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "BMJUA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 @-webkit-keyframes tracking-in-expand {
   0% {
     letter-spacing: -0.5em;
@@ -22,21 +34,120 @@
     opacity: 1;
   }
 }
+* {
+  font-family: BMJUA;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+html main {
+  flex-direction: column;
+  width: 100%;
+}
+html main header {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  align-items: center;
+  font-size: 3.5rem;
+}
+html main section {
+  width: 100%;
+  height: calc((100vh - 50px) / 2);
+}
+html main section .option_box {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+html main section .option_box .option_tap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+html main section .option_box .option_tap .option_title {
+  width: 10rem;
+  font-size: 1.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html main section .option_box .option_tap select,
+html main section .option_box .option_tap input {
+  font-size: 1rem;
+  width: 30%;
+  text-align: center;
+  padding: 1rem 0;
+  border-radius: 1rem;
+  border: solid 1px black;
+}
+html main section .option_box .option_tap:nth-child(4) {
+  display: flex;
+}
+html main section .option_box .option_tap:nth-child(4) .option_input_container {
+  width: 30%;
+}
+html main section .option_box .option_tap:nth-child(4) .option_input_container div {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+html main section .option_box .option_tap:nth-child(4) .option_input_container div:first-child {
+  margin-bottom: 0.8rem;
+}
+html main section .option_box .option_tap:nth-child(4) .option_input_container div .option_tooltip {
+  visibility: hidden;
+  right: 80%;
+  position: absolute;
+  opacity: 0;
+  transition: all ease-in-out 0.2s;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+html main section .option_box .option_tap:nth-child(4) .option_input_container div input {
+  width: 100%;
+}
+html main section .option_box .option_tap:nth-child(4) .option_input_container:focus-within .option_tooltip {
+  visibility: visible;
+  opacity: 1;
+  right: 105%;
+}
+html main section:last-child {
+  width: 100%;
+  background-color: #ff9999;
+}
+
+@media (min-width: 335px) and (max-width: 757px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+@media (min-width: 758px) and (max-width: 1023px) {
+  html {
+    font-size: 73%;
+  }
+}
+@media (min-width: 1024px) {
+  html {
+    font-size: 85%;
+  }
+}
 .tracking-in-expand {
   -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
   animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
 }
 
-/* CSS */
 .submit_btn {
   background-color: #fff;
   border: 0 solid #e2e8f0;
-  border-radius: 1.5rem;
   box-sizing: border-box;
   color: #0d172a;
   cursor: pointer;
   display: inline-block;
-  font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1;

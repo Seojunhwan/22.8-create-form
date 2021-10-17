@@ -7,12 +7,15 @@
       content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
     />
     <title>22.8</title>
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/mvp.css" /> -->
+    <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
-      <header class="tracking-in-expand">#22.8 스텐 셀프 견적</header>
+      <header>
+        <span class="tracking-in-expand"> #22.8 스텐 셀프 견적 </span>
+      </header>
       <section>
         <form class="option_box">
           <div class="option_tap">
@@ -50,27 +53,29 @@
           </div>
           <div class="option_tap">
             <label class="option_title">규격</label>
-            <div>
-              <span>가로 : 50 mm ~ 1,219 mm</span>
-              <input
-                class="option_width js_Width"
-                required
-                placeholder="가로 (mm)"
-                type="number"
-                min="50"
-                max="1219"
-              />
-            </div>
-            <div>
-              <span>세로 : 50 mm ~ 2,438 mm</span>
-              <input
-                class="option_height js_Height"
-                required
-                placeholder="세로 (mm)"
-                type="number"
-                min="50"
-                max="2438"
-              />
+            <div class="option_input_container">
+              <div>
+                <span class="option_tooltip">가로 : 50 mm ~ 1,219 mm</span>
+                <input
+                  class="option_width js_Width"
+                  required
+                  placeholder="가로 (mm)"
+                  type="number"
+                  min="50"
+                  max="1219"
+                />
+              </div>
+              <div>
+                <span class="option_tooltip">세로 : 50 mm ~ 2,438 mm</span>
+                <input
+                  class="option_height js_Height"
+                  required
+                  placeholder="세로 (mm)"
+                  type="number"
+                  min="50"
+                  max="2438"
+                />
+              </div>
             </div>
           </div>
           <input
@@ -82,12 +87,6 @@
       </section>
       <section>
         <div class="result_box js-resultBox hide">
-          <span class="result">JAVA</span>
-          <span class="result">JAVA</span>
-          <span class="result">JAVA</span>
-          <div class="naver_item_container">
-            <ul class="naver_item_list"></ul>
-          </div>
           <div class="total-price">
             <span>총 상품 금액</span>
             <span class="total-price--value"></span>
