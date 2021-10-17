@@ -1,358 +1,182 @@
-const typeSelectBox = document.getElementById("type"),
-  submitBtn = document.querySelector(".submit_btn"),
-  optionType = document.querySelector("#type"),
-  optionThickness = document.querySelector("#thickness"),
-  optionQuantity = document.querySelector("#quantity"),
-  optionWidth = document.querySelector(".option_width"),
-  optionLength = document.querySelector(".option_length"),
-  resultBox = document.querySelector(".js-resultBox"),
-  naverList = document.querySelector(".naver_item_list"),
-  admin = document.querySelector("header");
+const type = document.getElementById("type");
+const thick = document.getElementById("thickness");
+const quantity = document.getElementById("quantity");
+const width = document.querySelector(".js_Width");
+const height = document.querySelector(".js_Height");
+const btn = document.querySelector(".js_Btn");
+const result = document.querySelector(".js-resultBox");
+const resultPrice = document.querySelector(".total-price--value");
 
-let validationValueCheck = false;
+const GS = 7.93;
+const materialList = [];
 
-const outputValueContainer = {};
-let totalPrice = [];
+class Material {
+  constructor(type, thick, quantity, width, height) {
+    this.type = priceInfo[type].name;
+    this.unitPrice = priceInfo[type].price[thick];
+    this.thick = parseFloat(thick);
+    this.quantity = parseInt(quantity);
+    this.width = parseInt(width);
+    this.height = parseInt(height);
+    this.area = null;
+    this.weight = null;
+    this.plateCost = 1000;
+    this.foundCost = 0;
+  }
+  setPrice() {
+    this.area =
+      (Math.ceil(this.width / 50) * 50 * (Math.ceil(this.height / 50) * 50)) /
+      2500;
+    const result = Math.ceil((this.unitPrice * this.area) / 100) * 100;
+    if (result > 1000) {
+      this.plateCost = result;
+    }
+    if (this.plateCost < 10000) {
+      this.foundCost = 1000;
+    }
+    this.weight = (this.width * this.height * this.thick * GS) / 1000000;
+    this.price = (this.plateCost + this.foundCost) * this.quantity;
+  }
+}
 
-const adminActive = () => {
-  const primeCostDisplay = document.querySelectorAll(".js-admin");
-  primeCostDisplay.forEach((primeCost) => {
-    primeCost.classList.toggle("hide");
-  });
+const priceInfo = {
+  "2B": {
+    name: "2B",
+    price: { 0.8: 189, 1: 227, 1.2: 267, 1.5: 326, 2: 428 },
+  },
+  HL: {
+    name: "H/L",
+    price: { 0.8: 210, 1: 249, 1.2: 293, 1.5: 368, 2: 480 },
+  },
+  Mir: {
+    name: "Mirror",
+    price: { 1: 288, 1.2: 335, 1.5: 407, 2: 530 },
+  },
+  BLK_H: {
+    name: "Black H/L",
+    price: { 1.2: 563 },
+  },
+  GOL_H: {
+    name: "Gold H/L",
+    price: { 1.2: 597 },
+  },
+  GOL_M: {
+    name: "Gold Mirror",
+    price: { 1.2: 597 },
+  },
 };
 
-const appearResultBox = () => {
-  resultBox.classList.replace("hide", "active");
+const adminInfo = {
+  "2B": {
+    name: "2B",
+    price: { 0.8: 59, 1: 73, 1.2: 86, 1.5: 105, 2: 138 },
+  },
+  HL: {
+    name: "H/L",
+    price: { 0.8: 60, 1: 73, 1.2: 86, 1.5: 105, 2: 137 },
+  },
+  Mir: {
+    name: "Mirror",
+    price: { 1: 80, 1.2: 93, 1.5: 113, 2: 147 },
+  },
+  BLK_H: {
+    name: "Black H/L",
+    price: { 1.2: 148 },
+  },
+  GOL_H: {
+    name: "Gold H/L",
+    price: { 1.2: 157 },
+  },
+  GOL_M: {
+    name: "Gold Mirror",
+    price: { 1.2: 157 },
+  },
 };
 
-const hideOptions = () => {
-  const thicknessList = document.querySelector("#thickness");
-  thicknessList[1].classList.remove("hide-option");
-  thicknessList[2].classList.remove("hide-option");
-  thicknessList[3].classList.remove("hide-option");
-  thicknessList[4].classList.remove("hide-option");
-  thicknessList[5].classList.remove("hide-option");
-  if (inputValueSet().type === "Mirror") {
-    thicknessList[1].classList.add("hide-option");
-    thicknessList[1].classList.add("hide-option");
-  } else if (
-    inputValueSet().type === "BLK_HL" ||
-    inputValueSet().type === "GOL_HL" ||
-    inputValueSet().type === "GOL_Mirror"
-  ) {
-    thicknessList[1].classList.add("hide-option");
-    thicknessList[2].classList.add("hide-option");
-    thicknessList[4].classList.add("hide-option");
-    thicknessList[5].classList.add("hide-option");
+const changeOptions = () => {
+  for (let index = 1; index <= 5; index++) {
+    thick[index].removeAttribute("disabled");
+  }
+  switch (type.value) {
+    case "Mir":
+      thick[1].setAttribute("disabled", "");
+      thick[2].setAttribute("selected", "");
+      break;
+    case "BLK_H":
+    case "GOL_H":
+    case "GOL_M":
+      for (let index = 1; index <= 5; index++) {
+        if (index == 3) {
+          thick[3].setAttribute("selected", "");
+          continue;
+        }
+        thick[index].setAttribute("disabled", "");
+      }
+      break;
   }
 };
 
-const inputValueSet = () => {
-  const inputValueContainer = {
-    type: optionType.value,
-    thickness: parseFloat(optionThickness.value),
-    quantity: parseInt(optionQuantity.value),
-    width: parseFloat(optionWidth.value),
-    length: parseFloat(optionLength.value),
-  };
-  return inputValueContainer;
+const handleTypeChange = () => {
+  changeOptions();
 };
 
-const calcValue = (value) => {
-  const unitPrice = () => {
-    if (value.type === "2B") {
-      if (value.thickness == 0.8) {
-        return 189;
-      }
-      if (value.thickness == 1) {
-        return 227;
-      }
-      if (value.thickness == 1.2) {
-        return 267;
-      }
-      if (value.thickness == 1.5) {
-        return 326;
-      }
-      if (value.thickness == 2) {
-        return 428;
-      }
-    }
-    if (value.type === "HL") {
-      if (value.thickness == 0.8) {
-        return 210;
-      }
-      if (value.thickness == 1) {
-        return 249;
-      }
-      if (value.thickness == 1.2) {
-        return 293;
-      }
-      if (value.thickness == 1.5) {
-        return 368;
-      }
-      if (value.thickness == 2) {
-        return 480;
-      }
-    }
-    if (value.type === "Mirror") {
-      if (value.thickness == 1) {
-        return 288;
-      }
-      if (value.thickness == 1.2) {
-        return 335;
-      }
-      if (value.thickness == 1.5) {
-        return 407;
-      }
-      if (value.thickness == 2) {
-        return 530;
-      }
-    }
-    if (value.type === "BLK_HL") {
-      return 563;
-    }
-    if (value.type === "GOL_HL" || value.type === "GOL_Mirror") {
-      return 597;
-    }
-  };
-  const primeCost = () => {
-    if (value.type === "2B") {
-      if (value.thickness == 0.8) {
-        return 59;
-      }
-      if (value.thickness == 1) {
-        return 73;
-      }
-      if (value.thickness == 1.2) {
-        return 86;
-      }
-      if (value.thickness == 1.5) {
-        return 105;
-      }
-      if (value.thickness == 2) {
-        return 138;
-      }
-    }
-    if (value.type === "HL") {
-      if (value.thickness == 0.8) {
-        return 60;
-      }
-      if (value.thickness == 1) {
-        return 73;
-      }
-      if (value.thickness == 1.2) {
-        return 86;
-      }
-      if (value.thickness == 1.5) {
-        return 105;
-      }
-      if (value.thickness == 2) {
-        return 137;
-      }
-    }
-    if (value.type === "Mirror") {
-      if (value.thickness == 1) {
-        return 80;
-      }
-      if (value.thickness == 1.2) {
-        return 93;
-      }
-      if (value.thickness == 1.5) {
-        return 113;
-      }
-      if (value.thickness == 2) {
-        return 147;
-      }
-    }
-    if (value.type === "BLK_HL") {
-      return 148;
-    }
-    if (value.type === "GOL_HL" || value.type === "GOL_Mirror") {
-      return 157;
-    }
-  };
-  const calcSize = () => {
-    const calcWidth = Math.ceil(value.width / 50) * 50;
-    const calcLength = Math.ceil(value.length / 50) * 50;
-    const calcResult = (calcWidth * calcLength) / 2500;
-    return calcResult;
-  };
-  const calcPlateCost = () => {
-    const result = Math.ceil((unitPrice() * calcSize()) / 100) * 100;
-    if (result < 1000) {
-      return 1000;
-    } else {
-      return result;
-    }
-  };
-  const calcPrimeCost = () => {
-    return primeCost() * calcSize();
-  };
-  calcPrimeCost();
-  const calcFoundationCost = () => {
-    if (calcPlateCost() < 10000) {
-      return 1000;
-    } else {
-      return 0;
-    }
-  };
-  const calcPrice = (calcPlateCost() + calcFoundationCost()) * value.quantity;
-  const calcNaverQuantity = calcPrice / 100;
-  outputValueContainer.price = calcPrice;
-  outputValueContainer.plateCost = calcPlateCost();
-  outputValueContainer.foundationCost = calcFoundationCost();
-  outputValueContainer.quantity = value.quantity;
-  outputValueContainer.naverQuantity = calcNaverQuantity;
-  outputValueContainer.primeCost = calcPrimeCost();
-};
-
-const appendValue = (output) => {
-  const resultList = document.querySelectorAll(".result");
-  const naverProductInfo = document.querySelector(".js-naver-product__info");
-  const naverQuantityResult = document.querySelector(".js-quantity");
-  const naverPriceResult = document.querySelector(".js-naverPrice");
-  resultList[0].innerText = `고객님께서 선택해주신 옵션은 ${output.price} 원 입니다.`;
-  resultList[1].innerText = `판재비 ${output.plateCost} 원 + 재단비 ${output.foundationCost} 원 X ${output.quantity} 개`;
-  resultList[2].innerHTML = `하기와 같이 네이버 스토어 구매 수량에 ${output.naverQuantity}개 입력해 주시기 바랍니다.`;
-
-  // FIXME:리스트 형식으로 바꿔서 필요 없는 코드
-  // naverProductInfo.innerText = `${inputValueSet().width} / ${
-  //   inputValueSet().length
-  // } / ${inputValueSet().type} / ${inputValueSet().thickness} T`;
-  // naverQuantityResult.innerText = output.naverQuantity;
-  // naverPriceResult.innerText = `${output.price} 원`;
-};
-
-const appendOptions = (output) => {
-  const naverItem = document.createElement("li");
-  const naverBox = document.createElement("div");
-  const naverBoxOption = document.createElement("div");
-  const product__info = document.createElement("div");
-  const deleteBtn = document.createElement("button");
-  const admin = document.createElement("div");
-
-  deleteBtn.className = "jsDeleteBtn";
-  deleteBtn.innerHTML = "X";
-  deleteBtn.addEventListener("click", handleDelBtnClick);
-
-  naverItem.className = "naver_item";
-  naverBox.className = "naver_box";
-  naverBoxOption.className = "naver_box--option";
-  product__info.className = "js-naver-product__info";
-  admin.className = "hide js-admin";
-  // admin.className = "js-admin";
-
-  product__info.innerText = `${inputValueSet().width} * ${
-    inputValueSet().length
-  } / ${inputValueSet().quantity} / ${inputValueSet().type} ${
-    inputValueSet().thickness
-  } T`;
-  admin.innerText = `${output.primeCost}`;
-
-  const naverBoxAdjustment = document.createElement("div");
-  const adjustQuantity = document.createElement("div");
-  const operMinus = document.createElement("div");
-  const operPlus = document.createElement("div");
-  const quantity = document.createElement("div");
-  const naverBoxPrice = document.createElement("div");
-  const naverBoxPriceSpan = document.createElement("span");
-
-  naverBoxAdjustment.className = "naver_box--adjustment";
-  adjustQuantity.className = "adjust--quantity";
-  operMinus.className = "operator";
-  operPlus.className = "operator";
-  quantity.className = "quantity";
-  naverBoxPrice.className = "naver-box--price";
-  naverBoxPriceSpan.className = "naver-box--price-value";
-
-  quantity.innerText = output.naverQuantity;
-  naverBoxPriceSpan.innerText = `${output.price} 원`;
-
-  adjustQuantity.appendChild(operMinus);
-  adjustQuantity.appendChild(quantity);
-  adjustQuantity.appendChild(operPlus);
-
-  naverBoxOption.appendChild(product__info);
-  naverBoxOption.appendChild(admin);
-  naverBoxOption.appendChild(deleteBtn);
-  naverBox.appendChild(naverBoxOption);
-  naverItem.appendChild(naverBox);
-  naverList.appendChild(naverItem);
-
-  naverBoxPrice.appendChild(naverBoxPriceSpan);
-  naverBoxAdjustment.appendChild(adjustQuantity);
-  naverBoxAdjustment.appendChild(naverBoxPrice);
-  naverBox.appendChild(naverBoxAdjustment);
-};
-
-const validationValue = () => {
+const createMaterial = () => {
   if (
-    optionType.value === "a" ||
-    optionThickness.value === "a" ||
-    optionQuantity.value === "" ||
-    optionWidth.value === "" ||
-    optionLength.value === ""
+    type.value &&
+    thick.value &&
+    quantity.value > 0 &&
+    width.value >= 50 &&
+    width.value <= 1219 &&
+    height.value >= 50 &&
+    height.value <= 2438
   ) {
-    alert("옵션을 선택해 주세요!");
+    const material = new Material(
+      type.value,
+      thick.value,
+      quantity.value,
+      width.value,
+      height.value
+    );
+    material.setPrice();
+    materialList.push(material);
   } else {
-    validationValueCheck = true;
+    alert("뭔가 조금 이상하군요");
   }
-};
-
-const resetValue = () => {
-  optionType.value = "a";
-  optionThickness.value = "a";
-  optionQuantity.value = null;
-  optionWidth.value = null;
-  optionLength.value = null;
-  validationValueCheck = false;
-  // FIXME:여기 확인 필요
-};
-
-const calcTotalPrice = () => {
-  const itemPrice = document.querySelectorAll(".naver-box--price-value");
-  const naverTotalPrice = document.querySelector(".total-price--value");
-  if (itemPrice.length >= 2) {
-    itemPrice.forEach((item) => {
-      let res = item.innerText.replace(/[^0-9]/g, "");
-      totalPrice.push(parseInt(res));
-    });
-  } else if (itemPrice.length >= 1) {
-    let res = itemPrice[0].innerHTML.replace(/[^0-9]/g, "");
-    totalPrice.push(parseInt(res));
-  }
-  if (itemPrice.length === 0) {
-    naverTotalPrice.innerText = "0원";
-  } else {
-    const reducer = (acc, current) => acc + current;
-    naverTotalPrice.innerText = `${totalPrice.reduce(reducer)}원`;
-  }
-  totalPrice = [];
 };
 
 const handleSubmit = (event) => {
-  validationValue();
-  if (validationValueCheck === true) {
-    appearResultBox();
-    hideOptions();
-    calcValue(inputValueSet());
-    appendValue(outputValueContainer);
-    appendOptions(outputValueContainer);
-    validationValueCheck = false;
-    calcTotalPrice();
+  event.preventDefault();
+  createMaterial();
+  printResult();
+};
+
+const printResult = () => {
+  const itemList = document.createElement("ul");
+  const item = document.createElement("li");
+  const itemInfo = document.createElement("span");
+  let totalPrice = 0;
+  if (materialList.length) {
+    materialList.forEach((material) => {
+      itemInfo.innerHTML = `${material.width} * ${material.height} / ${material.quantity} / ${material.type} / ${material.thick} T`;
+      item.appendChild(itemInfo);
+      itemList.appendChild(item);
+      totalPrice += material.price;
+      console.log(totalPrice);
+    });
+    resultPrice.innerHTML = totalPrice;
+    result.appendChild(itemList);
+    // delbtn.addEventListener("click", handleDelBtn);
   }
 };
 
-const handleDelBtnClick = (event) => {
-  const delTarget = event.target.parentElement.parentElement.parentElement;
-  naverList.removeChild(delTarget);
-  calcTotalPrice();
+const handleDelBtn = () => {
+  const index = 0;
+  materialList.splice(index, 1); //!배열 요소 삭제
 };
 
 const init = () => {
-  // admin.addEventListener("dblclick", adminActive);
-  typeSelectBox.addEventListener("change", hideOptions);
-  submitBtn.addEventListener("click", handleSubmit);
+  btn.addEventListener("click", handleSubmit);
+  type.addEventListener("change", handleTypeChange);
 };
 
 init();
