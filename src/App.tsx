@@ -1,22 +1,44 @@
 import React from "react";
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+import ItemList from "./components/ItemList";
+import { RecoilRoot } from "recoil";
+
+const GlobalStyle = createGlobalStyle`  
+  ${reset}
+  @font-face {
+      font-family: 'Cafe24SsurroundAir';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+  *{
+    box-sizing:border-box;
+    font-family:"Cafe24SsurroundAir",sans-serif;
+  }
+  select{
+    outline:none;
+    border:none;
+  }
+  input {
+    outline:none;
+    border:none;
+  }
+  button {
+    background-color:inherit;
+    outline:none;
+    border:none;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RecoilRoot>
+        <GlobalStyle />
+        <ItemList />
+      </RecoilRoot>
+    </>
   );
 }
 
