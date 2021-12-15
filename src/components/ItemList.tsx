@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { itemsState } from "../atoms";
@@ -35,10 +34,6 @@ function ItemList() {
   }, [items]);
   return (
     <Container>
-      <Helmet>
-        <title>22.8</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Helmet>
       <Title>22.8</Title>
       <CreateItems />
       <List>
