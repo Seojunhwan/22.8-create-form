@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/22.8-create-form/static/js/main.915381df.js",
+    "main.js": "/22.8-create-form/static/js/main.b9895da0.js",
     "index.html": "/22.8-create-form/index.html",
-    "main.915381df.js.map": "/22.8-create-form/static/js/main.915381df.js.map"
+    "main.b9895da0.js.map": "/22.8-create-form/static/js/main.b9895da0.js.map"
   },
   "entrypoints": [
-    "static/js/main.915381df.js"
+    "static/js/main.b9895da0.js"
   ]
 }
