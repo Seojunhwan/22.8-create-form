@@ -16,6 +16,9 @@ const GlobalStyle = createGlobalStyle`
     box-sizing:border-box;
     font-family:"Cafe24SsurroundAir",sans-serif;
   }
+  span{
+    font-family:"Cafe24SsurroundAir",sans-serif;
+  }
   select{
     outline:none;
     border:none;
@@ -28,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
     background-color:inherit;
     outline:none;
     border:none;
+    cursor: pointer;
   }
 `;
 
