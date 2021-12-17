@@ -20,6 +20,7 @@ const Title = styled.h1`
 
 const List = styled.ul`
   margin-top: 10px;
+  padding-bottom: 50px;
 `;
 
 function ItemList() {
