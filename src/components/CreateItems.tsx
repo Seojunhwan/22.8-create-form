@@ -60,7 +60,6 @@ function CreateItems() {
     setError,
     clearErrors,
     formState: { errors },
-    setFocus,
     setValue,
   } = useForm<IForm>();
   const handleValid = ({ quantity, width, height }: IForm) => {
@@ -83,7 +82,6 @@ function CreateItems() {
     setValue("quantity", "");
     setValue("width", "");
     setValue("height", "");
-    setFocus("quantity");
   };
   return (
     <>
