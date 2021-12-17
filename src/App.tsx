@@ -33,6 +33,9 @@ const GlobalStyle = createGlobalStyle`
     border:none;
     cursor: pointer;
   }
+  body{
+    height:100vh;
+  }
 `;
 
 function App() {

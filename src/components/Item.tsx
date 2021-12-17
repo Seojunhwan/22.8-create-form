@@ -17,6 +17,7 @@ const InfoContainer = styled.div`
   padding: 5px 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   button {
     border-radius: 5px;
     transition: all 0.2s ease-out;
@@ -41,6 +42,9 @@ const InfoContainer = styled.div`
         &:not(&:nth-child(2)) {
           font-size: 15px;
           padding: 5px;
+        }
+        &:last-child {
+          vertical-align: middle;
         }
       }
     }
