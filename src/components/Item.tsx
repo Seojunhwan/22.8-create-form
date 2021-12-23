@@ -1,5 +1,5 @@
-import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
+import { useSetRecoilState } from "recoil";
 import { IItem, itemsState } from "../atoms";
 
 const List = styled.li`
