@@ -2,6 +2,37 @@ import styled from "styled-components";
 import { useSetRecoilState } from "recoil";
 import { IItem, itemsState } from "../atoms";
 
+function Item({ id, type, thick, quantity, width, height, price }: IItem) {
+  const setItems = useSetRecoilState(itemsState);
+  const onClick = () => {
+    setItems((oldItems) => {
+      const targetIndex = oldItems.findIndex((item) => item.id === id);
+      return [
+        ...oldItems.slice(0, targetIndex),
+        ...oldItems.slice(targetIndex + 1),
+      ];
+    });
+  };
+  return (
+    <List>
+      <InfoContainer>
+        <span>{`${width} * ${height} / ${quantity} / ${type} ${thick}T`}</span>
+        <button onClick={onClick}>지우기</button>
+      </InfoContainer>
+      <InfoContainer>
+        <div>
+          <span>-</span>
+          <span>{price / 100}</span>
+          <span>+</span>
+        </div>
+        <span>{price}원</span>
+      </InfoContainer>
+    </List>
+  );
+}
+
+export default Item;
+
 const List = styled.li`
   display: flex;
   flex-direction: column;
@@ -50,34 +81,3 @@ const InfoContainer = styled.div`
     }
   }
 `;
-
-function Item({ id, type, thick, quantity, width, height, price }: IItem) {
-  const setItems = useSetRecoilState(itemsState);
-  const onClick = () => {
-    setItems((oldItems) => {
-      const targetIndex = oldItems.findIndex((item) => item.id === id);
-      return [
-        ...oldItems.slice(0, targetIndex),
-        ...oldItems.slice(targetIndex + 1),
-      ];
-    });
-  };
-  return (
-    <List>
-      <InfoContainer>
-        <span>{`${width} * ${height} / ${quantity} / ${type} ${thick}T`}</span>
-        <button onClick={onClick}>지우기</button>
-      </InfoContainer>
-      <InfoContainer>
-        <div>
-          <span>-</span>
-          <span>{price / 100}</span>
-          <span>+</span>
-        </div>
-        <span>{price}원</span>
-      </InfoContainer>
-    </List>
-  );
-}
-
-export default Item;

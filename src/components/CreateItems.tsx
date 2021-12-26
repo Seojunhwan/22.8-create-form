@@ -23,33 +23,6 @@ interface IForm {
   extraError?: string;
 }
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Input = styled.input<{ borderColor: string }>`
-  border-bottom: 2px solid ${(props) => props.borderColor};
-  padding: 10px;
-  text-align: center;
-  transition: border-bottom 0.3s ease-in-out;
-  &:not(:first-child) {
-    margin-top: 10px;
-  }
-`;
-
-const Button = styled.button<{ bgColor: string }>`
-  background-color: ${(props) => props.bgColor};
-  color: ${(props) => (props.bgColor ? "white" : "black")};
-  padding: 10px;
-  margin-top: 10px;
-  transition: transform 0.3s ease-out, color 0.2s ease-out;
-  &:active {
-    transform: scale(0.96);
-    color: black;
-  }
-`;
-
 function CreateItems() {
   const setItems = useSetRecoilState(itemsState);
   const [type, thick] = useRecoilValue(optionState);
@@ -156,3 +129,30 @@ function CreateItems() {
 }
 
 export default CreateItems;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Input = styled.input<{ borderColor: string }>`
+  border-bottom: 2px solid ${(props) => props.borderColor};
+  padding: 10px;
+  text-align: center;
+  transition: border-bottom 0.3s ease-in-out;
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+`;
+
+const Button = styled.button<{ bgColor: string }>`
+  background-color: ${(props) => props.bgColor};
+  color: ${(props) => (props.bgColor ? "white" : "black")};
+  padding: 10px;
+  margin-top: 10px;
+  transition: transform 0.3s ease-out, color 0.2s ease-out;
+  &:active {
+    transform: scale(0.96);
+    color: black;
+  }
+`;

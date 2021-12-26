@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-const Container = styled.div`
-  display: flex;
-  position: fixed;
-  justify-content: space-between;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  padding: 20px 20px;
-  background-color: #ebeeff;
-`;
-
 function TotalInfo({ totalPrice }: { totalPrice: number }) {
   return (
     <Container>
@@ -21,3 +10,14 @@ function TotalInfo({ totalPrice }: { totalPrice: number }) {
 }
 
 export default TotalInfo;
+
+const Container = styled.div`
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 20px 20px;
+  background-color: #ebeeff;
+`;

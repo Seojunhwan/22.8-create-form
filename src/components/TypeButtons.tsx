@@ -4,38 +4,6 @@ import styled from "styled-components";
 import { thickState, typeState } from "../atoms";
 import { Types } from "./CreateItems";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  button {
-  }
-`;
-
-const Button = styled.button<{ isSelected?: boolean }>`
-  padding: 10px;
-  border-radius: 5px;
-  background-color: ${(props) => (props.isSelected ? "#B0A8B9" : "#ffffff")};
-  color: ${(props) => (props.isSelected ? "#ffffff" : "black")};
-  transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
-    transform 0.1s;
-  &:focus-visible {
-    box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
-    transition: box-shadow 0.2s;
-  }
-  &:active {
-    background-color: #f7f7f7;
-    border-color: #000000;
-    transform: scale(0.96);
-  }
-  &:disabled {
-    border-color: #dddddd;
-    color: #dddddd;
-    cursor: not-allowed;
-    opacity: 1;
-  }
-`;
-
 function TypeButtons() {
   const [type, setType] = useRecoilState(typeState);
   const [thick, setThick] = useRecoilState(thickState);
@@ -146,3 +114,35 @@ function TypeButtons() {
 }
 
 export default TypeButtons;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  button {
+  }
+`;
+
+const Button = styled.button<{ isSelected?: boolean }>`
+  padding: 10px;
+  border-radius: 5px;
+  background-color: ${(props) => (props.isSelected ? "#B0A8B9" : "#ffffff")};
+  color: ${(props) => (props.isSelected ? "#ffffff" : "black")};
+  transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
+    transform 0.1s;
+  &:focus-visible {
+    box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+    transition: box-shadow 0.2s;
+  }
+  &:active {
+    background-color: #f7f7f7;
+    border-color: #000000;
+    transform: scale(0.96);
+  }
+  &:disabled {
+    border-color: #dddddd;
+    color: #dddddd;
+    cursor: not-allowed;
+    opacity: 1;
+  }
+`;
